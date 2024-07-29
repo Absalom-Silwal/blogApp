@@ -17,10 +17,10 @@ class BlogAppController extends BaseController
     public function index(){
         $type='blog';
         $limit = 5;
-        $serviceFactory = new ServiceFactory($type);
-        $service = $serviceFactory->getService();
+        $serviceFactory = new ServiceFactory();
+        $service = $serviceFactory->getService($type);
         $blogs = $service->get($limit);
-        return view('index',compact($blogs));
+        return view('detail',compact($blogs));
     }
 
     public function view($type,$id){
