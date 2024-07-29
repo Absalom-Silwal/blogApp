@@ -12,15 +12,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::namespace('App\Http\Controllers')->group(function(){
-    Route::get('','BlogAppController@index');
-    Route::post('register','BlogAppController@register');
-    Route::post('login', 'BlogAppController@login');
-    Route::middleware('auth:sanctum')->group(function () {
-        //need type variable
-        Route::resource('posts', PostController::class);
-        Route::get('posts/search', [PostController::class, 'search']);
-        Route::resource('categories', CategoryController::class);
-    });
-});
+// Route::namespace('App\Http\Controllers')->group(function(){
+//     Route::get('','BlogAppController@index');
+//     Route::post('register','BlogAppController@register');
+//     Route::post('login', 'BlogAppController@login');
+//     Route::middleware('auth:sanctum')->prefix('api')->group(function () {
+//         //need type variable
+//         Route::get('/view/{type}/{id}','BlogAppController@view');
+//         Route::post('/create/{type}','BlogAppController@create');
+//         Route::post('/update/{type}/{id}','BlogAppController@update');
+//         Route::post('/delete/{type}/{id}','BlogAppController@delete');
+//     });
+// });
 

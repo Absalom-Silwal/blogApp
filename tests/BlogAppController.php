@@ -32,49 +32,40 @@ class BlogAppController extends BaseController
     }
 
     public function create(Request $request,$type){
-       
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
-        $resp = $service->create($request);
+        $data = $request->all();
+        $serviceFactory = new ServiceFactory($type);
+        $service = $serviceFactory->getService();
+        $resp = $service->create($data);
 
         return response()->json($resp);
     }
 
-    public function update(Request $request,$type,int $id){
-        //dd($type,$id);
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
-        $resp = $service->update($id,$request);
+    public function update(Request $request,$type,$id){
+        $data = $request->all();
+        $serviceFactory = new ServiceFactory($type);
+        $service = $serviceFactory->getService();
+        $resp = $service->update($id,$data);
     }
 
     public function delete($type,$id){
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
+        $serviceFactory = new ServiceFactory($type);
+        $service = $serviceFactory->getService();
         $resp = $service->delete($id);
     }
 
     public function register(Request $request){
         $type='auth';
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
-        $resp = $service->register($request);
-        return $resp;
+        $data = $request->all();
+        $serviceFactory = new ServiceFactory($type);
+        $service = $serviceFactory->getService();
+        $resp = $service->register($data);
     }
 
     public function login(Request $request){
-        
         $type='auth';
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
-        $resp = $service->login($request);
-        return $resp;
-    }
-
-    public function upload(Request $request){
-        $type='upload';
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
-        $resp = $service->upload($request);
-        return $resp;
+        $data = $request->all();
+        $serviceFactory = new ServiceFactory($type);
+        $service = $serviceFactory->getService();
+        $resp = $service->login($data);
     }
 }
