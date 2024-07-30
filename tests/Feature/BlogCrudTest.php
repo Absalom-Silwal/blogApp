@@ -33,7 +33,7 @@ class BlogCrudTest extends TestCase
     {
         $this->withoutExceptionHandling();    
         Storage::fake('public');
-        $file = UploadedFile::fake()->image($this->faker->word.'jpg');
+        $file = UploadedFile::fake()->image($this->faker->word.'.jpg');
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $this->token,
         ])->post('/api/create/blog',[
