@@ -17,46 +17,47 @@ class BlogAppController extends BaseController
     public function index(){
         $type='blog';
         $limit = 5;
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
+        $service = $this->getService($type);
         $blogs = $service->get($limit);
-        return view('detail',compact($blogs));
+        return view('index',compact($blogs));
     }
 
     public function view($type,$id){
-        $serviceFactory = new ServiceFactory($type);
-        $service = $serviceFactory->getService();
+        $service = $this->getService($type);
         $resp = $service->view($id);
 
-        return response()->json($data);
+        return $resp;
     }
 
     public function create(Request $request,$type){
-       
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
+        $service = $this->getService($type);
         $resp = $service->create($request);
 
-        return response()->json($resp);
+        return $resp;
+    }
+
+    public function get(Request $request,$type){
+        $service=$this->getService($type);
+        $resp = $service->get($request);
+        return $resp;
     }
 
     public function update(Request $request,$type,int $id){
-        //dd($type,$id);
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
+        
+        $service = $this->getService($type);
         $resp = $service->update($id,$request);
+        return $resp;
     }
 
     public function delete($type,$id){
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
+        $service = $this->getService($type);
         $resp = $service->delete($id);
+        return $resp;
     }
 
     public function register(Request $request){
         $type='auth';
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
+        $service = $this->getService($type);
         $resp = $service->register($request);
         return $resp;
     }
@@ -64,17 +65,26 @@ class BlogAppController extends BaseController
     public function login(Request $request){
         
         $type='auth';
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
+        $service = $this->getService($type);
         $resp = $service->login($request);
         return $resp;
     }
 
     public function upload(Request $request){
         $type='upload';
-        $serviceFactory = new ServiceFactory();
-        $service = $serviceFactory->getService($type);
+        $service = $this->getService($type);
         $resp = $service->upload($request);
         return $resp;
+    }
+
+    public function assignCategory(Request $request,$blog){
+        $type='blog';
+        $service = $this->getService($type);
+        $resp = $service->assignCategory($request,$blog);
+    }
+
+    protected function getService($type){
+        $serviceFactory = new ServiceFactory();
+        return $serviceFactory->getService($type);
     }
 }

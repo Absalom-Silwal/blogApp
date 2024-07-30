@@ -33,18 +33,6 @@
 <body data-bs-spy="scroll" data-bs-target="#navbar-example" data-bs-offset="82">
       <header id="home">
         <nav id="#navbar" class="navbar dark dark navbar-expand-lg position-fixed top-0 w-100 pb-2">
-          <div class="preview-header  fixed-top bg-light py-1">
-            <div class="px-3 d-flex justify-content-between ">
-              <div class="Fbee-logo">
-                <a href="https://firmbee.com/" target="_blank"><img class="h-100" src="img/firmbee-logo-prew.svg" alt="Firmbee"></a>
-              </div>
-              <div class="preview-download">
-                <a class="btn btn-link mr-4" href="https://firmbee.com/freebees/free-html-templates" target="_blank">More Freebees</a>
-                <a class="btn btn-sm btn-primary shadow btn-icon" href="./Freebees_webdesign_7.zip" download><i class="fas fa-file-download"></i></a>
-                <a class="btn btn-sm btn-primary shadow btn-text" href="./Freebees_webdesign_7.zip" download>Download free template</a>
-              </div>
-            </div>
-        </div>
           <div class="container">
             <a class="navbar-brand" href="index.html"><img src="./img/logo-blog.png" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +55,7 @@
             <div class="blog col-md-8">
               <div class="all-posts">
                 <div class="post-item">
-                  <div class="post-img"><img src="img/architecture-1857175_1920.jpg" alt=""></div>
+                  <div class="post-img"><img src="https://stc.firmbee.com/html-prev/Freebees_webdesign_9_prev/img/architecture-1857175_1920.jpg" alt=""></div>
                   <div class="post-main-info">
                     <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div class="post-meta">
@@ -78,7 +66,7 @@
                   </div>
                 </div>
                 <div class="post-item">
-                  <div class="post-img"><img src="img/building-1727807_1920.jpg" alt=""></div>
+                  <div class="post-img"><img src="https://stc.firmbee.com/html-prev/Freebees_webdesign_9_prev/img/building-1727807_1920.jpg" alt=""></div>
                   <div class="post-main-info">
                     <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div class="post-meta">
@@ -89,7 +77,7 @@
                   </div>
                 </div>
                 <div class="post-item">
-                  <div class="post-img"><img src="img/castle-1998435_1920.jpg" alt=""></div>
+                  <div class="post-img"><img src="https://stc.firmbee.com/html-prev/Freebees_webdesign_9_prev/img/castle-1998435_1920.jpg" alt=""></div>
                   <div class="post-main-info">
                     <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div class="post-meta">
@@ -100,7 +88,7 @@
                   </div>
                 </div>
                 <div class="post-item">
-                  <div class="post-img"><img src="img/architecture-1857175_1920.jpg" alt=""></div>
+                  <div class="post-img"><img src="https://stc.firmbee.com/html-prev/Freebees_webdesign_9_prev/img/architecture-1857175_1920.jpg" alt=""></div>
                   <div class="post-main-info">
                     <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div class="post-meta">
@@ -111,7 +99,7 @@
                   </div>
                 </div>
                 <div class="post-item">
-                  <div class="post-img"><img src="img/building-1727807_1920.jpg" alt=""></div>
+                  <div class="post-img"><img src="https://stc.firmbee.com/html-prev/Freebees_webdesign_9_prev/img/castle-1998435_1920.jpg" alt=""></div>
                   <div class="post-main-info">
                     <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div class="post-meta">
@@ -121,39 +109,7 @@
                     <a href="./single-post.html" class="main-button">Read More</a>
                   </div>
                 </div>
-                <div class="post-item">
-                  <div class="post-img"><img src="img/castle-1998435_1920.jpg" alt=""></div>
-                  <div class="post-main-info">
-                    <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <div class="post-meta">
-                      <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
-                    </div>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum beatae pariatur sequi vitae quia velit? Facere maxime delectus cum voluptas unde accusantium rerum ullam rem asperiores. Alias, omnis quidem....</p>
-                    <a href="./single-post.html" class="main-button">Read More</a>
-                  </div>
-                </div> 
-                <div class="post-item">
-                  <div class="post-img"><img src="img/architecture-1857175_1920.jpg" alt=""></div>
-                  <div class="post-main-info">
-                    <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <div class="post-meta">
-                      <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
-                    </div>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum beatae pariatur sequi vitae quia velit? Facere maxime delectus cum voluptas unde accusantium rerum ullam rem asperiores. Alias, omnis quidem....</p>
-                    <a href="./single-post.html" class="main-button">Read More</a>
-                  </div>
-                </div>
-                <div class="post-item">
-                  <div class="post-img"><img src="img/building-1727807_1920.jpg" alt=""></div>
-                  <div class="post-main-info">
-                    <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <div class="post-meta">
-                      <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
-                    </div>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum beatae pariatur sequi vitae quia velit? Facere maxime delectus cum voluptas unde accusantium rerum ullam rem asperiores. Alias, omnis quidem....</p>
-                    <a href="./single-post.html" class="main-button">Read More</a>
-                  </div>
-                </div>
+                
               </div>
               <nav aria-label="blog navigation">
                 <ul class="pagination">
@@ -185,9 +141,9 @@
                 </button>
               </div>
               <div class="recent-posts pt-5">
-                <h4 class="mb-3">RECENT POSTS</h4>
+                <h4 class="mb-3">CATEGORIES</h4>
                 <div class="post-item">
-                  <a href="simple-post.html" class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+                  <a href="simple-post.html" class="post-title">Fashion <span>(6)</span></a>
                   <div class="post-meta">
                     <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
                   </div>
@@ -208,49 +164,9 @@
                   <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
                 </div>
                 <a class="main-button">View all posts</a>
-                <div class="popular pt-5">
-                  <h4 class="mb-3">READ MOST POPULAR ARTICLES</h4>
-                  <div class="card bg-dark text-white">
-                    <img src="./img/architecture-1857175_1920.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay p-3">
-                      <div class="text-overlay">
-                      <h5 class="card-title text-uppercase">Lorem, ipsum dolor sit amet consectetur </h5>
-                      <div class="line"></div>
-                      <div class="card-text article-meta">
-                        <span><i class="far fa-user"></i> Posted by someone </span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 300 comments</span>
-                      </div>
-                      <button class="card-button">Read article</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card bg-dark text-white">
-                    <img src="./img/castle-1998435_1920.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay p-3">
-                      <div class="text-overlay">
-                      <h5 class="card-title text-uppercase">Lorem, ipsum dolor sit amet consectetur </h5>
-                      <div class="line"></div>
-                      <div class="card-text article-meta">
-                        <span><i class="far fa-user"></i> Posted by someone </span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 300 comments</span>
-                      </div>
-                      <button class="card-button">Read article</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card bg-dark text-white">
-                    <img src="./img/staircase-274614_1920.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay p-3">
-                      <div class="text-overlay">
-                      <h5 class="card-title text-uppercase">Lorem, ipsum dolor sit amet consectetur </h5>
-                      <div class="line"></div>
-                      <div class="card-text article-meta">
-                        <span><i class="far fa-user"></i> Posted by someone </span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 300 comments</span>
-                      </div>
-                      <button class="card-button">Read article</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
+                
+              </div>
+
             </div>
           </div>
         </div>    
@@ -275,8 +191,3 @@
 </body>
 </html>
 
-    </head>
-    <body >
-       <h1>this is index page</h1>
-    </body>
-</html>

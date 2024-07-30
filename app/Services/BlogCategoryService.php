@@ -11,33 +11,39 @@ class BlogCategoryService implements CrudInterface
     public function get($limit){
         //handle pagination and filter
         $data = BlogCategory::where('is_deleted',0)->get()->paginate($limit);
-        return $data;
+        return response()->json($data);
     }
     public function view($id)
     {
         // Implement blog view logic
         $category = BlogCategory::find($id);
-        return $category;
+        return response()->json($category);
     }
 
-    public function create($data)
+    public function create($request)
     {
         // Implement create logic
-        $category = BlogCategory::create($data);
-        return $category;
+        // dd($request->all());
+        $category = BlogCategory::create([
+            'name' => $request->name,
+            'is_deleted' =>0
+        ]);
+        return response()->json(['message'=>'created sucessfully','category'=>$category],200);
     }
 
-    public function update($id,$data){
+    public function update($id,$request){
         //Implement update logic
         $category = BlogCategory::find($id);
-        $category->update($data);
-        return $category;
+        $category->update([
+            'name'=>$request->name
+        ]);
+        return response()->json(['message'=>'updated sucessfully','category'=>$category],200);
     }
 
     public function delete($id){
         //Implement deleted logic
         $category = BlogCategory::find($id);
-        $category->update(['is_deleted',0]);
-        return $category;
+        $category->update(['is_deleted'=>1]);
+        return response()->json(['message'=>'deletd sucessfully'],200);
     }
 }

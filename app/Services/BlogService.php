@@ -10,25 +10,34 @@ use App\Http\Requests\UpdateBlogRequest;
 
 class BlogService implements CrudInterface
 {
-    public function get($limit){
+    public function get($request){
         //handle pagination and filter
-        $data = Blog::where('is_deleted',0)->paginate($limit);
-        return $data;
+        $query = Blog::where('is_deleted',0);
+        if($request->category){
+            $query->where('category_id',$request->category);
+        }
+        $data= $query->paginate($request->limit);
+
+        return response()->json($data,200);
     }
 
     public function view($id)
     {
         // Implement blog view logic
         $blog = Blog::find($id);
-        return $blog;
+        return response()->json($blog,200);
     }
 
     public function create($request)
     {
         // Implement create logic
         //validation
-        $request =new StoreBlogRequest($request->all());  
-
+        $request->validate([
+            'name' => 'required|string',
+            'body' => 'required|string',
+            //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        //dd($request->all());
         $blog = new Blog();
         $blog->title = $request->input('name');
         $blog->body = $request->input('body');
@@ -41,14 +50,14 @@ class BlogService implements CrudInterface
         }
     
         $blog->save();
-    
+       // dd($blog);
         return response()->json($blog, 200);
     }
 
     public function update($id,$request){
 
         //Implement update logic
-       $request = new UpdateBlogRequest($request);
+       $request = new UpdateBlogRequest($request->all());
         
         $blog = Blog::find($id);
         $blog->title = $request->input('name');
@@ -72,5 +81,16 @@ class BlogService implements CrudInterface
         $blog->update(['is_deleted'=>1]);
         return response()->json($blog,200);
 
+    }
+
+    public function assignCategory($request,$blog){
+     
+        $blog = Blog::find($blog);
+        //dd($blog,$request->all());
+        $blog->update([
+            'category_id'=> $request->category
+        ]);
+
+        return response()->json(['message'=>'category assigned sucessfully','blog'=>$blog],200);
     }
 }
