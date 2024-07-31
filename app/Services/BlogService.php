@@ -11,14 +11,19 @@ use App\Http\Requests\UpdateBlogRequest;
 class BlogService implements CrudInterface
 {
     public function get($request){
-        //handle pagination and filter
-        $query = Blog::where('is_deleted',0);
-        if($request->category){
-            $query->where('category_id',$request->category);
-        }
-        $data= $query->paginate($request->limit);
+        try {
+            $limit =  $request->limit? $request->limit:5;
+            $query = Blog::where('is_deleted',0);
+            if($request->category){
+                $query->where('category_id',$request->category);
+            }
+            $data= $query->paginate($limit);
 
-        return response()->json($data,200);
+            return response()->json($data,200);
+        } catch (\Throwable $th) {
+            return response()->json(['messge'=>$th->getMessage()],500);
+        }
+       
     }
 
     public function view($id)
@@ -30,56 +35,66 @@ class BlogService implements CrudInterface
 
     public function create($request)
     {
-        // Implement create logic
-        //validation
-        $request->validate([
-            'title' => 'required|string',
-            'body' => 'required|string',
-            //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-        //dd($request->all());
-        $blog = new Blog();
-        $blog->title = $request->input('title');
-        $blog->body = $request->input('body');
-    
-        if ($request->hasFile('image')) {
-            $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $path=$request->file('image')->storeAs('images', $fileName);
-            $blog->blog_image = $fileName;
-            $blog->image_path = $path;
+        try {
+            $request->validate([
+                'title' => 'required|string',
+                'body' => 'required|string',
+                //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+           
+            $blog = new Blog();
+            $blog->title = $request->input('title');
+            $blog->body = $request->input('body');
+        
+            if ($request->hasFile('image')) {
+                $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $path=$request->file('image')->storeAs('images', $fileName);
+                $blog->blog_image = $fileName;
+                $blog->image_path = $path;
+            }
+        
+            $blog->save();
+           // dd($blog);
+            return $this->get($request);
+        } catch (\Throwable $th) {
+            return response()->json(['messge'=>$th->getMessage()],500);
         }
-    
-        $blog->save();
-       // dd($blog);
-        return response()->json($blog, 200);
+        
     }
 
     public function update($id,$request){
 
-        //Implement update logic
-       $request = new UpdateBlogRequest($request->all());
+        try {
+            $request = new UpdateBlogRequest($request->all());
+            $blog = Blog::find($id);
+            $blog->title = $request->input('name');
+            $blog->body = $request->input('body');
         
-        $blog = Blog::find($id);
-        $blog->title = $request->input('name');
-        $blog->body = $request->input('body');
-    
-        if ($request->hasFile('image')) {
-            $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-            $path=$request->file('image')->storeAs('images', $fileName);
-            $blog->blog_image = $fileName;
-            $blog->image_path = $path;
+            if ($request->hasFile('image')) {
+                $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $path=$request->file('image')->storeAs('images', $fileName);
+                $blog->blog_image = $fileName;
+                $blog->image_path = $path;
+            }
+        
+            $blog->update();
+        
+            return $this->get($request);
+        } catch (\Throwable $th) {
+            return response()->json(['messge'=>$th->getMessage()],500);
         }
-    
-        $blog->update();
-    
-        return response()->json($blog, 200);
+       
     }
 
-    public function delete($id){
-
-        $blog = Blog::find($id);
-        $blog->update(['is_deleted'=>1]);
-        return response()->json($blog,200);
+    public function delete($request,$id){
+        try {
+            $blog = Blog::find($id);
+            $blog->update(['is_deleted'=>1]);
+            return $this->get($request);
+        } catch (\Throwable $th) {
+            return response()->json(['messge'=>$th->getMessage()],500);
+        }
+        
 
     }
 
@@ -92,5 +107,12 @@ class BlogService implements CrudInterface
         ]);
 
         return response()->json(['message'=>'category assigned sucessfully','blog'=>$blog],200);
+    }
+
+    protected function returnResponse($response,$status){
+        return [
+                'response'=>$response,
+                'status'=>$status
+            ];
     }
 }

@@ -23,17 +23,9 @@ class AuthService
             'email' => $request->email,
             'password' => Hash::make($request->password),
             ]);
-        return [
-            'response'=>['user'=>$user],
-            'status'=>200
-        ];
+        return response()->json(['message'=>'User created sucessfully'],200);
        } catch (\Throwable $th) {
-            return [
-                'response'=>[
-                    'messge'=>$th->getMessage()
-                ],
-                'status'=>500
-            ];
+           return response()->json(['message'=>$th->getMessage],500);
        }
        
 
@@ -52,17 +44,9 @@ class AuthService
             $user = Auth::user();
             $token = $user->createToken('API Token')->plainTextToken;
             
-            return [
-                'response'=>['token'=>$token],
-                'status'=>200
-            ];
+            return response()->json(['token'=>$token],200);
         } catch (\Throwable $th) {
-            return [
-                'response'=>[
-                    'messge'=>$th->getMessage()
-                ],
-                'status'=>500
-            ];
+            return response()->json(['message'=>$th->getMessage],500);
         }
       
     }
