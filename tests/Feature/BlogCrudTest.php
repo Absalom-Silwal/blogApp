@@ -34,40 +34,65 @@ class BlogCrudTest extends TestCase
         $this->withoutExceptionHandling();    
         Storage::fake('public');
         $file = UploadedFile::fake()->image($this->faker->word.'.jpg');
+        $title = $this->faker->sentence;
+        $body = $this->faker->paragraph;
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $this->token,
         ])->post('/api/create/blog',[
-            'name'=>$this->faker->sentence,
-            'body'=>$this->faker->paragraph,
+            'title'=>$title,
+            'body'=>$body,
             'image'=>$file
         ]);
        
         $response->assertStatus(200);
-        
+        $this->assertDatabaseHas('blogs',[
+            'title'=>$title,
+            'body'=>$body
+        ]);
         
     }
 
-    // public function testUserCanUpdateBlog(){
-    //     $this->withoutExceptionHandling();
-    //     $blog = Blog::where('is_deleted',0)->first();
-    //     Storage::fake('public');
-    //     $file = UploadedFile::fake()->image($this->faker->word.'.jpg');
-    //     $response = $this->withHeaders([
-    //         'Authorization' => 'Bearer ' . $this->token,
-    //     ])->post("/api/update/blog/{$blog->id}",[
-    //         'name'=>$this->faker->sentence,
-    //         'body'=>$this->faker->paragraph,
-    //         'image'=>$file
-    //     ]);
-    //     $response->assertStatus(200);
-    // }
+    public function testUserCanReadBlogs(){
+        $this->withoutExceptionHandling();
+        $response=$this->getJson('/api/get/blog',[
+            'limit'=>5
+        ]);
+        //dd($response);
+        $response->assertStatus(200);
+    }
 
-    // public function testUserCanDeleteBlog(){
-    //     $this->withoutExceptionHandling();
-    //     $blog = Blog::where('is_deleted',0)->first();
-    //     $response = $this->withHeaders([
-    //         'Authorization' => 'Bearer ' . $this->token,
-    //     ])->post("/api/delete/blog/{$blog->id}");
-    //     $response->assertStatus(200);
-    // }
+    public function testUserCanUpdateBlog(){
+        $this->withoutExceptionHandling();
+        $blog = Blog::where('is_deleted',0)->first();
+        Storage::fake('public');
+        $file = UploadedFile::fake()->image($this->faker->word.'.jpg');
+        $title = $this->faker->sentence;
+        $body = $this->faker->paragraph;
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->token,
+        ])->post("/api/update/blog/{$blog->id}",[
+            'name'=>$title,
+            'body'=>$body,
+            'image'=>$file
+        ]);
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('blogs',[
+            'title'=>$title,
+            'body'=>$body
+        ]);
+    }
+
+    public function testUserCanDeleteBlog(){
+        $this->withoutExceptionHandling();
+        $blog = Blog::where('is_deleted',0)->first();
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->token,
+        ])->post("/api/delete/blog/{$blog->id}");
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('blogs',[
+            'title'=>$blog->title,
+            'body'=>$blog->body,
+            'is_deleted'=>1
+        ]);
+    }
 }

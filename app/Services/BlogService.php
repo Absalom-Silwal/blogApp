@@ -33,13 +33,13 @@ class BlogService implements CrudInterface
         // Implement create logic
         //validation
         $request->validate([
-            'name' => 'required|string',
+            'title' => 'required|string',
             'body' => 'required|string',
             //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         //dd($request->all());
         $blog = new Blog();
-        $blog->title = $request->input('name');
+        $blog->title = $request->input('title');
         $blog->body = $request->input('body');
     
         if ($request->hasFile('image')) {

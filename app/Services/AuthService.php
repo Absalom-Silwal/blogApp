@@ -38,8 +38,9 @@ class AuthService
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        $token = Auth::user()->createToken('API Token')->plainTextToken;
-        //dd($token);
+        $user = Auth::user();
+        $token = $user->createToken('API Token')->plainTextToken;
+        
         return response()->json(['token' => $token]);
     }
 

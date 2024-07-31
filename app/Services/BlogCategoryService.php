@@ -8,9 +8,9 @@ use App\Interfaces\CrudInterface;
 
 class BlogCategoryService implements CrudInterface
 {
-    public function get($limit){
+    public function get($request){
         //handle pagination and filter
-        $data = BlogCategory::where('is_deleted',0)->get()->paginate($limit);
+        $data = BlogCategory::where('is_deleted',0)->paginate($request->limit);
         return response()->json($data);
     }
     public function view($id)
