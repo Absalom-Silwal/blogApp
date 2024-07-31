@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 
 use Illuminate\Http\Request;
@@ -10,17 +10,10 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class BlogAppController extends BaseController
+class BlogAppApiController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function index(){
-        $type='blog';
-        $limit = 5;
-        $service = $this->getService($type);
-        $blogs = $service->get($limit);
-        return view('pages.index',compact($blogs));
-    }
 
     public function view($type,$id){
         $service = $this->getService($type);
@@ -59,7 +52,7 @@ class BlogAppController extends BaseController
         $type='auth';
         $service = $this->getService($type);
         $resp = $service->register($request);
-        return $resp;
+        return $this->getResponse($resp);
     }
 
     public function login(Request $request){
@@ -67,7 +60,7 @@ class BlogAppController extends BaseController
         $type='auth';
         $service = $this->getService($type);
         $resp = $service->login($request);
-        return $resp;
+        return $this->getResponse($resp);
     }
 
     public function upload(Request $request){
@@ -86,5 +79,9 @@ class BlogAppController extends BaseController
     protected function getService($type){
         $serviceFactory = new ServiceFactory();
         return $serviceFactory->getService($type);
+    }
+
+    protected function getResponse($response){
+        return response()->json($response['response'],$response->status);
     }
 }

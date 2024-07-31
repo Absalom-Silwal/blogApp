@@ -13,19 +13,19 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::namespace('App\Http\Controllers')->group(function(){
+Route::namespace('App\Http\Controllers\Api')->group(function(){
 
-    Route::post('register','BlogAppController@register')->name('register');
-    Route::post('login', 'BlogAppController@login')->name('login');
-    Route::get('/get/{type}','BlogAppController@get');
-    Route::get('/view/{type}/{id}','BlogAppController@view');
+    Route::post('register','BlogAppApiController@register')->name('register');
+    Route::post('login', 'BlogAppApiController@login')->name('login');
+    Route::get('/get/{type}','BlogAppApiController@get');
+    Route::get('/view/{type}/{id}','BlogAppApiController@view');
     Route::middleware('auth:sanctum')->group(function(){
         
-        Route::post('/upload','BlogAppController@upload')->name('upload.image');
-        Route::post('/assign/category-to/{blog}','BlogAppController@assignCategory');
-        Route::post('/create/{type}','BlogAppController@create');
-        Route::post('/update/{type}/{id}','BlogAppController@update');
-        Route::post('/delete/{type}/{id}','BlogAppController@delete');
+        Route::post('/upload','BlogAppApiController@upload')->name('upload.image');
+        Route::post('/assign/category-to/{blog}','BlogAppApiController@assignCategory');
+        Route::post('/create/{type}','BlogAppApiController@create');
+        Route::post('/update/{type}/{id}','BlogAppApiController@update');
+        Route::post('/delete/{type}/{id}','BlogAppApiController@delete');
     });
 
 });

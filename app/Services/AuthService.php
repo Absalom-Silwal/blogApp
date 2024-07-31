@@ -12,36 +12,59 @@ use Illuminate\Support\Facades\Hash;
 class AuthService 
 {
     public function register($request){
-       //register logic here
-       $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'confirmed'],
-       ]);
-       $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
-
-    return response()->json($user, 200);
+       try {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'confirmed'],
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            ]);
+        return [
+            'response'=>['user'=>$user],
+            'status'=>200
+        ];
+       } catch (\Throwable $th) {
+            return [
+                'response'=>[
+                    'messge'=>$th->getMessage()
+                ],
+                'status'=>500
+            ];
+       }
+       
 
     }
 
     public function login($request){
-        //login logic here
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
-        //dd($request->all());
-        if (!Auth::attempt($request->only('email', 'password'))) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        try {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|string',
+            ]);
+            //dd($request->all());
+            if (!Auth::attempt($request->only('email', 'password'))) {
+                return response()->json(['error' => 'Unauthorized'], 401);
+            }
+            $user = Auth::user();
+            $token = $user->createToken('API Token')->plainTextToken;
+            
+            return [
+                'response'=>['token'=>$token],
+                'status'=>200
+            ];
+        } catch (\Throwable $th) {
+            return [
+                'response'=>[
+                    'messge'=>$th->getMessage()
+                ],
+                'status'=>500
+            ];
         }
-        $user = Auth::user();
-        $token = $user->createToken('API Token')->plainTextToken;
-        
-        return response()->json(['token' => $token]);
+      
     }
 
 }

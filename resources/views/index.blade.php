@@ -6,10 +6,6 @@
 
         <title>Blog App</title>
 
-        <!-- Fonts -->
-        
-
-        <!-- Styles -->
         <style>
            
         </style>
