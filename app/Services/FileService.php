@@ -6,8 +6,19 @@ use App\Models\Blog;
 use App\Interfaces\CrudInterface;
 
 
-class FileUploadService 
+class FileService 
 {
+    public function get($request){
+        $storage_location = storage_path('app');
+        $file_location = $storage_location.'/'.$request->file;
+        
+        if(file_exists($file_location)){
+            return response()->file($file_location);
+        }
+        else{
+            return response()->file(public_path('/images/noimage.jpg'));
+        }
+    }
     public function upload($request){
         try {
             $request->validate([

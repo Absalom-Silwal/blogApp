@@ -26,6 +26,11 @@ class BlogAppController extends BaseController
         return $resp;
     }
 
+    public function addEdit(Request $request,$type){
+        $service = $this->getService($type);
+        return $service->addEdit($request);
+    }
+
     public function create(Request $request,$type){
         $service = $this->getService($type);
         $resp = $service->create($request);
@@ -68,7 +73,7 @@ class BlogAppController extends BaseController
     }
 
     public function upload(Request $request){
-        $type='upload';
+        $type='file';
         $service = $this->getService($type);
         $resp = $service->upload($request);
         return $resp;
@@ -83,5 +88,12 @@ class BlogAppController extends BaseController
     protected function getService($type){
         $serviceFactory = new ServiceFactory();
         return $serviceFactory->getService($type);
+    }
+
+    public function getFile(Request $request){
+        $type='file';
+        $service = $this->getService($type);
+        $resp = $service->get($request);
+        return $resp;
     }
 }

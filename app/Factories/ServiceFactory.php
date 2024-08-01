@@ -6,7 +6,7 @@ use App\Models\Blog;
 use App\Services\AuthService;
 use App\Services\BlogService;
 use App\Interfaces\CrudInterface;
-use App\Services\FileUploadService;
+use App\Services\FileService;
 use App\Services\BlogCategoryService;
 
 
@@ -28,8 +28,8 @@ class ServiceFactory
                 return new BlogCategoryService();
             case 'auth':
                 return new AuthService();
-            case 'upload':
-                return new FileUploadService();
+            case 'file':
+                return new FileService();
             default:
                 return new BlogService();
                 break;

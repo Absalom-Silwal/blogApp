@@ -17,7 +17,14 @@ class BlogService implements CrudInterface
             if($request->category){
                 $query->where('category_id',$request->category);
             }
-            $data= $query->paginate($limit);
+            if($request->search){
+                $searchValue = $request->search;
+                $query->where(function($query) use ($searchValue){
+                    $query->where('title','LIKE',"%{$searchValue}%")
+                        ->orWhere('body','LIKE',"%{$searchValue}%");
+                });
+            }
+            $data= $query->orderBy('created_at','desc')->paginate($limit);
 
             return response()->json($data,200);
         } catch (\Throwable $th) {
@@ -31,6 +38,14 @@ class BlogService implements CrudInterface
         // Implement blog view logic
         $blog = Blog::find($id);
         return response()->json($blog,200);
+    }
+
+    public function addEdit($request){
+        $blog=null;
+        if($request->id){
+            $blog=Blog::find($request->id);
+        }
+        return view('modals.blogAddEdit',compact('blog'));
     }
 
     public function create($request)

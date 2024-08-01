@@ -57,7 +57,7 @@ class BlogAppApiController extends BaseController
     }
 
     public function upload(Request $request){
-        $type='upload';
+        $type='file';
         $service = $this->getService($type);
         return $service->upload($request);
     }

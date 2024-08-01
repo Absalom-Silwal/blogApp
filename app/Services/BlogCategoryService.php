@@ -30,6 +30,14 @@ class BlogCategoryService implements CrudInterface
         return response()->json($category);
     }
 
+    public function addEdit($request){
+        $category=null;
+        if($request->id){
+            $category=BlogCategory::find($request->id);
+        }
+        return view('modals.categoryAddEdit',compact('category'));
+    }
+
     public function create($request)
     {
       try {
