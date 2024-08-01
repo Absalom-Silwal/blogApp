@@ -92,27 +92,30 @@
         </div>
         <div class="recent-posts pt-5">
           <h4 class="mb-3">CATEGORIES</h4>
-          <div class="post-item">
-            <a href="simple-post.html" class="post-title">Fashion <span>(6)</span></a>
-            <div class="post-meta">
-              <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
+          <div class="categories">
+            <div class="post-item">
+              <a href="simple-post.html" class="post-title">Fashion <span>(6)</span></a>
+              <div class="post-meta">
+                <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
+              </div>
+              <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
             </div>
-            <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
-          </div>
-          <div class="post-item">
-            <a href="simple-post.html" class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-            <div class="post-meta">
-              <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
+            <div class="post-item">
+              <a href="simple-post.html" class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+              <div class="post-meta">
+                <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
+              </div>
+              <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
             </div>
-            <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
-          </div>
-          <div class="post-item">
-            <a href="simple-post.html" class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-            <div class="post-meta">
-              <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
+            <div class="post-item">
+              <a href="simple-post.html" class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
+              <div class="post-meta">
+                <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
+              </div>
+              <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
             </div>
-            <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
           </div>
+       
           <a class="main-button">View all posts</a>
           
         </div>

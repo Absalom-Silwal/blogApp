@@ -15,11 +15,8 @@ class BlogAppController extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function index(){
-        $type='blog';
-        $limit = 5;
-        $service = $this->getService($type);
-        $blogs = $service->get($limit);
-        return view('pages.index',compact($blogs));
+       
+        return view('pages.index');
     }
 
     public function view($type,$id){
