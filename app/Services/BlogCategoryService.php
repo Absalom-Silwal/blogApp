@@ -11,10 +11,11 @@ class BlogCategoryService implements CrudInterface
     public function get($request){
         try {
             $limit =$request->limit?$request->limit:null;
-            $categories = BlogCategory::where('is_deleted',0)->paginate($limit);
+            $categories = BlogCategory::where('is_deleted',0)->withCount('blogs')->orderBy('blogs_count','desc')->paginate();
+            
             return response()->json($categories,200);
         } catch (\Throwable $th) {
-            return  response()->json(['message'=>$th->getMessage],500);
+            return  response()->json(['message'=>$th->getMessage()],500);
         }
         
     }
@@ -24,7 +25,7 @@ class BlogCategoryService implements CrudInterface
             $category = BlogCategory::find($id);
              return  response()->json($category,200);
         } catch (\Throwable $th) {
-            return  response()->json(['message'=>$th->getMessage],500);
+            return  response()->json(['message'=>$th->getMessage()],500);
         }
         
         return response()->json($category);
@@ -47,7 +48,7 @@ class BlogCategoryService implements CrudInterface
         ]);
         return $this->get($request);
       } catch (\Throwable $th) {
-        return  response()->json(['message'=>$th->getMessage],500);
+        return  response()->json(['message'=>$th->getMessage()],500);
       }
       
     }
@@ -60,7 +61,7 @@ class BlogCategoryService implements CrudInterface
             ]);
             return  $this->get($request);
         } catch (\Throwable $th) {
-            return  response()->json(['message'=>$th->getMessage],500);
+            return  response()->json(['message'=>$th->getMessage()],500);
         }
         
     }
@@ -71,7 +72,7 @@ class BlogCategoryService implements CrudInterface
             $category->update(['is_deleted'=>1]);
             return  $this->get($request);
         } catch (\Throwable $th) {
-            return  response()->json(['message'=>$th->getMessage],500);
+            return  response()->json(['message'=>$th->getMessage()],500);
         }
         
     }

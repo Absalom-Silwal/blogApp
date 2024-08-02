@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 Route::namespace('App\Http\Controllers')->group(function(){
     Route::get('','BlogAppController@index');
+    Route::get('/login','BlogAppController@loginModal');
+    Route::get('/register','BlogAppController@registerModal');
     Route::get('/get/{type}','BlogAppController@get');
     Route::get('/getFile','BlogAppController@getFile');
     Route::get('/addEdit/{type}','BlogAppController@addEdit');
     Route::post('/create/{type}','BlogAppController@create');
     Route::post('/update/{type}/{id}','BlogAppController@update');
-    // Route::post('register','BlogAppController@register');
-    // Route::post('login', 'BlogAppController@login');
+    Route::post('/delete/{type}/{id}','BlogAppController@delete');
+    Route::post('register','BlogAppController@register');
+    Route::post('login', 'BlogAppController@login');
+    Route::post('logout', 'BlogAppController@logout');
     // Route::middleware('auth:sanctum')->prefix('api')->group(function () {
     //     //need type variable
     //     Route::get('/view/{type}/{id}','BlogAppController@view');

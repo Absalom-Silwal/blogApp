@@ -19,6 +19,14 @@ class BlogAppController extends BaseController
         return view('pages.index');
     }
 
+    public function loginModal(){
+        return view('modals.login');
+    }
+
+    public function registerModal(){
+        return view('modals.register');
+    }
+
     public function view($type,$id){
         $service = $this->getService($type);
         $resp = $service->view($id);
@@ -69,6 +77,13 @@ class BlogAppController extends BaseController
         $type='auth';
         $service = $this->getService($type);
         $resp = $service->login($request);
+        return $resp;
+    }
+    public function logout(Request $request){
+        
+        $type='auth';
+        $service = $this->getService($type);
+        $resp = $service->webLogout($request);
         return $resp;
     }
 

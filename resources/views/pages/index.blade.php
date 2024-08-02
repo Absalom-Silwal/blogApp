@@ -3,12 +3,14 @@
   <div class="container">
     <div class="row mainmargin">
       <div class="blog col-md-8">
+        @if(auth()->check())
         <div class="w-100 text-end">
           <button type="button" class="btn btn-primary w-20 float-right show-modal"  data-route="/addEdit/blog">
             Add Blog
           </button>
 
         </div>
+        @endif
         <div class="all-posts">
      
         </div>
@@ -44,38 +46,23 @@
         <div class="recent-posts pt-5">
         <div class="w-100 d-flex justify-content-between align-items-center">
         <h4 class="">CATEGORIES</h4>
+        @if(auth()->check())
           <button type="button" class="btn btn-primary w-20 float-right show-modal"  data-route="/addEdit/category">
             Add 
           </button>
-
+        @endif
         </div>
           
           <div class="categories">
-            <div class="post-item">
-              <a href="simple-post.html" class="post-title">Fashion <span>(6)</span></a>
-              <div class="post-meta">
-                <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
-              </div>
-              <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
-            </div>
-            <div class="post-item">
-              <a href="simple-post.html" class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-              <div class="post-meta">
-                <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
-              </div>
-              <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
-            </div>
-            <div class="post-item">
-              <a href="simple-post.html" class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-              <div class="post-meta">
-                <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
-              </div>
-              <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
-            </div>
+            <ul class="list-group list-group-flush post-item categories-list">
+              <li class="list-group-item ">Cras justo odio <span>(7)<span></li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Morbi leo risus</li>
+              <li class="list-group-item">Porta ac consectetur ac</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            
           </div>
-       
-          <a class="main-button">View all posts</a>
-          
         </div>
 
       </div>

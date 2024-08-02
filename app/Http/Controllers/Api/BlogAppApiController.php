@@ -55,6 +55,12 @@ class BlogAppApiController extends BaseController
         $service = $this->getService($type);
         return  $service->login($request);
     }
+    public function logout(Request $request){
+        
+        $type='auth';
+        $service = $this->getService($type);
+        return  $service->apiLogin($request);
+    }
 
     public function upload(Request $request){
         $type='file';

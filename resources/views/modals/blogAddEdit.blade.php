@@ -1,20 +1,29 @@
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLongTitle">{{!empty($blog)?'Add':'Edit'}} Add</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <h5 class="modal-title" id="exampleModalLongTitle">{{empty($blog)?'Add':'Edit'}} Blog</h5>
+    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
-    </button>
+    </button> -->
     </div>
     <div class="modal-body">
         <form id="blogSaveUpdateForm">
             @csrf
             <!-- Name input -->
             <div class="mb-3">
-                <input class="form-control" id="title" name="title" type="text" placeholder="Title *" data-sb-validations="required" value="{{!empty($blog)?$blog->title:''}}" />
+                <label for="title">Title</label>
+                <input class="form-control" id="title" name="title" type="text" placeholder="" data-sb-validations="required" value="{{!empty($blog)?$blog->title:''}}" />
                 <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
             </div>
             <div class="mb-3">
-                <label for="formFileSm" class="form-label">Small file input example</label>
-                <input class="form-control form-control-sm" name="image" id="formFileSm" type="file">
+                <label for="image">Image</label>
+                <input class="form-control form-control-sm" name="image" id="image" type="file">
+            </div>
+            <div class="mb-3">
+                <label for="category">Choose Category</label>
+                <select class="form-select" name="category_id" id="category" aria-label="Default select example">
+                    @foreach($categories as $category)
+                    <option value="{{$category->id}}" @if(!empty($blog) && $category->id == $blog->category_id) selected @endif>{{$category->name}}</option>
+                    @endforeach
+                </select>
             </div>
             <!-- Message input -->
             <div class="mb-3">
@@ -24,7 +33,7 @@
             </div>
         </form>
     </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
     <button type="button" class="btn btn-primary" id="saveUpdate" data-type="blog" data-id="{{!empty($blog)?$blog->id:''}}">Save changes</button>
 </div>

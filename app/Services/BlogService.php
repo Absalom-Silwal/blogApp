@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Interfaces\CrudInterface;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
@@ -45,7 +46,8 @@ class BlogService implements CrudInterface
         if($request->id){
             $blog=Blog::find($request->id);
         }
-        return view('modals.blogAddEdit',compact('blog'));
+        $categories = BlogCategory::where('is_deleted',0)->get();
+        return view('modals.blogAddEdit',compact('blog','categories'));
     }
 
     public function create($request)
@@ -66,6 +68,9 @@ class BlogService implements CrudInterface
                 $path=$request->file('image')->storeAs('images', $fileName);
                 $blog->blog_image = $fileName;
                 $blog->image_path = $path;
+            }
+            if($request->category_id){
+                $blog->category_id = $request->category_id;
             }
         
             $blog->save();
@@ -91,7 +96,9 @@ class BlogService implements CrudInterface
                 $blog->blog_image = $fileName;
                 $blog->image_path = $path;
             }
-        
+            if($request->category_id){
+                $blog->category_id = $request->category_id;
+            }
             $blog->update();
         
             return $this->get($request);
