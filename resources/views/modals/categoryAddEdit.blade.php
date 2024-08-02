@@ -7,7 +7,7 @@
             <!-- Name input -->
             <div class="mb-3">
                 <label for="name">Name</label>
-                <input class="form-control" id="name" name="name" type="text" placeholder="" data-sb-validations="required" value="{{!empty($category)?$category->name:''}}" />
+                <input class="form-control form-control-lg" id="name" name="name" type="text" placeholder="" data-sb-validations="required" value="{{!empty($category)?$category->name:''}}" />
                 <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
             </div>  
         </form>

@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/blog/css/all.css">
+    <link rel="stylesheet" href="/blog/css/app.css">
     <script src="https://kit.fontawesome.com/0e035b9984.js" crossorigin="anonymous"></script>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar-example" data-bs-offset="82">
@@ -53,14 +53,33 @@
                 <div class="post-item">
                   <div class="post-img"><img src="https://stc.firmbee.com/html-prev/Freebees_webdesign_9_prev/img/architecture-1857175_1920.jpg" alt=""></div>
                   <div class="post-main-info">
-                    <p class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <h2 class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
                     <div class="post-meta">
-                      <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
+                        <span><i class="far fa-calendar"></i> August 02, 2024</span>
                     </div>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum beatae pariatur sequi vitae quia velit? Facere maxime delectus cum voluptas unde accusantium rerum ullam rem asperiores. Alias, omnis quidem....</p>
-                    <a href="./single-post.html" class="main-button">Read More</a>
+                    <div class="post-desc">
+                      <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum beatae pariatur sequi vitae quia velit? Facere maxime delectus cum voluptas unde accusantium rerum ullam rem asperiores. Alias, omnis quidem....</span>
+                    </div>
+                    
+                    <a href="./single-post.html" class="main-button">Read More ></a>
                   </div>
                 </div>
+                <hr>
+                <div class="post-item">
+                  <div class="post-img"><img src="https://stc.firmbee.com/html-prev/Freebees_webdesign_9_prev/img/architecture-1857175_1920.jpg" alt=""></div>
+                  <div class="post-main-info">
+                    <h2 class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> August 02, 2024</span>
+                    </div>
+                    <div class="post-desc">
+                      <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum beatae pariatur sequi vitae quia velit? Facere maxime delectus cum voluptas unde accusantium rerum ullam rem asperiores. Alias, omnis quidem....</span>
+                    </div>
+                    
+                    <a href="./single-post.html" class="main-button">Read More ></a>
+                  </div>
+                </div>
+                <hr>
                 <div class="post-item">
                   <div class="post-img"><img src="https://stc.firmbee.com/html-prev/Freebees_webdesign_9_prev/img/building-1727807_1920.jpg" alt=""></div>
                   <div class="post-main-info">
@@ -108,7 +127,7 @@
                 
               </div>
               <nav aria-label="blog navigation">
-                <ul class="pagination">
+                <ul class="pagination justify-content-center">
                   <li class="page-item ">
                     <a class="page-link" href="#" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
@@ -132,34 +151,19 @@
                 <div class="form-outline">
                   <input id="search-input" type="search" id="form1" class="form-control" placeholder="search" />
                 </div>
-                <button id="search-button" type="button" class="btn dark">
-                  <i class="fas fa-search"></i>
-                </button>
               </div>
               <div class="recent-posts pt-5">
                 <h4 class="mb-3">CATEGORIES</h4>
                 <div class="post-item">
-                  <a href="simple-post.html" class="post-title">Fashion <span>(6)</span></a>
-                  <div class="post-meta">
-                    <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
-                  </div>
-                  <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio <span class="badge badge-primary badge-pill text-dark float-end">14</span></li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                  </ul>
                 </div>
-                <div class="post-item">
-                  <a href="simple-post.html" class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-                  <div class="post-meta">
-                    <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
-                  </div>
-                  <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
-                </div>
-                <div class="post-item">
-                  <a href="simple-post.html" class="post-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a>
-                  <div class="post-meta">
-                    <span><i class="far fa-user"></i> Posted by someone</span><span><i class="far fa-calendar"></i> 30 07 2021</span><span><i class="far fa-comment-alt"></i> 0 comments</span>
-                  </div>
-                  <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt perspiciatis ex ipsam similique blanditiis. Culpa hic quia...</p>
-                </div>
-                <a class="main-button">View all posts</a>
+               
                 
               </div>
 

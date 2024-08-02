@@ -62,8 +62,8 @@
       
         <!-- Modal -->
         <div class="modal fade" id="bs-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content" id="bs-modal-content">
+          <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 600px;">
+            <div class="modal-content p-5" id="bs-modal-content">
               
             </div>
           </div>

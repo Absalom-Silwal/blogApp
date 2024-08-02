@@ -57,19 +57,19 @@ section {
 
 h2, h3, h4, h5 {
   color: black;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
 }
 
 .post-meta {
   color: #707070;
-  text-transform: uppercase;
+  text-transform: capitalize;
   padding: 15px 0px 10px;
 }
 
 .underscore {
   display: inline-block;
-  border-bottom: 3px solid #f8cb33;
+  border-bottom: 3px solid #0c8bd4;
   padding-bottom: 10px;
 }
 
@@ -121,25 +121,25 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 label {
-  text-transform: uppercase;
+  text-transform: capitalize;
   border-radius: 0px;
 }
 
 .main-button {
   text-decoration: none;
-  color: black;
+  color: #1eafed;
   background-color: white;
-  padding: 10px 30px;
-  border: 4px solid black;
-  text-transform: uppercase;
+  padding: 10px 0px;
+  border: 0px solid black;
+  text-transform: capitalize;
   font-weight: 600;
   margin-top: 50px;
 }
 
-.main-button:hover {
+/* .main-button:hover {
   background-color: black;
   color: white;
-}
+} */
 
 .main-button-black {
   text-decoration: none;
@@ -147,7 +147,7 @@ label {
   background-color: black;
   padding: 10px 30px;
   border: 4px solid black;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
   margin-top: 50px;
 }
@@ -162,7 +162,7 @@ label {
   padding: 5px 15px;
   background-color: transparent;
   color: white;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-size: 12px;
   border: 1px solid white;
 }
@@ -173,7 +173,17 @@ label {
 }
 
 .mainmargin {
-  margin-top: 150px;
+  margin-top: 18px;
+}
+
+.mainmargin .blog{
+  padding:100px 50px 0px 0px;
+}
+
+.mainmargin .sidebar{
+  padding:100px 30px;
+  background-color: #fdf8f8a8;
+  font-weight: 600;
 }
 
 .quote {
@@ -197,7 +207,7 @@ label {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   content: "\f10e";
-  color: #f8cb33;
+  color: #0c8bd4;
   padding-right: 10px;
   font-size: 3em;
 }
@@ -221,7 +231,7 @@ ul.list-in-text li:before {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   content: "\f0c8";
-  color: #f8cb33;
+  color: #0c8bd4;
   padding-right: 10px;
   font-size: 0.8em;
 }
@@ -231,9 +241,9 @@ ul.list-in-text li:before {
 }
 
 nav {
-  padding-top: 50px !important;
+  /* padding-top: 50px !important; */
   z-index: 2;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 nav a, nav .nav-link {
@@ -246,7 +256,7 @@ nav .active::after {
   content: '';
   width: 100%;
   height: 2px;
-  background-color: #f8cb33;
+  background-color: #0c8bd4;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -261,7 +271,7 @@ nav .navbar-brand {
 }
 
 nav .nav-link:hover {
-  color: #f8cb33;
+  color: #0c8bd4;
 }
 
 .navbar-toggler {
@@ -277,7 +287,7 @@ nav .nav-link:hover {
 }
 
 .dark {
-  background-color: black;
+  background-color: #0c8bd4;
   color: white;
 }
 
@@ -300,7 +310,7 @@ nav .nav-link:hover {
 }
 
 .main-slider .fa-chevron-down:hover {
-  color: #f8cb33;
+  color: #0c8bd4;
 }
 
 .main-slider .hero-img {
@@ -338,7 +348,7 @@ nav .nav-link:hover {
 
 .main-slider .hero-img .hero-text .welcome-text {
   padding-bottom: 25px;
-  border-bottom: 4px solid #f8cb33;
+  border-bottom: 4px solid #0c8bd4;
 }
 
 .main-slider .hero-img .hero-text .welcome-text span {
@@ -399,14 +409,13 @@ nav .nav-link:hover {
 #posts .posts-wrapper .post-item {
   margin-bottom: 50px;
   padding-left: 20px;
-  border-left: 3px solid #f8cb33;
+  border-left: 3px solid #0c8bd4;
 }
 
 #posts .posts-wrapper .post-item .post-title {
   color: black;
-  font-size: 22px;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-decoration: none;
 }
 
@@ -451,7 +460,7 @@ nav .nav-link:hover {
 .new-articles .card-img-overlay .line {
   width: 200px;
   height: 2px;
-  background-color: #f8cb33;
+  background-color: #0c8bd4;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -538,7 +547,7 @@ nav .nav-link:hover {
 
 .single-post .navigation a:hover {
   cursor: pointer;
-  color: #f8cb33;
+  color: #0c8bd4;
 }
 
 .single-post #commentForm, .single-post #contactForm {
@@ -558,7 +567,6 @@ main {
 }
 
 .all-posts .post-item {
-  margin-bottom: 100px;
   position: relative;
 }
 
@@ -574,17 +582,23 @@ main {
 
 .all-posts .post-item .post-main-info .post-title {
   font-weight: 600;
-  text-transform: uppercase;
-  font-size: 1.3em;
+  text-transform: capitalize;
   color: black;
   padding: 20px 0px 15px;
   margin-bottom: 0;
 }
 
 .all-posts .post-item .post-main-info .post-meta {
-  font-size: 0.9em;
-  padding: 10px 0px;
+
+  padding: 15px 0px;
   color: gray;
+  font-weight: 500;
+}
+
+.all-posts .post-item .post-main-info .post-desc {
+  font-size:16px;
+  font-weight: 400;
+  margin-bottom: 15px;
 }
 
 .all-posts .post-item .post-main-info .post-meta span {
@@ -631,7 +645,7 @@ main {
 }
 
 .features .feature-item:hover {
-  color: #f8cb33;
+  color: #0c8bd4;
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
@@ -660,13 +674,13 @@ main {
 }
 
 .sidebar .input-group #search-button:hover {
-  color: #f8cb33;
+  color: #0c8bd4;
 }
 
 .sidebar .recent-posts .post-item {
   margin-bottom: 50px;
   padding-left: 20px;
-  border-left: 3px solid #f8cb33;
+  border-left: 3px solid #0c8bd4;
 }
 
 .sidebar .recent-posts .post-item .post-title {
@@ -675,7 +689,7 @@ main {
   color: black;
   font-size: 1.2em;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .sidebar .recent-posts .post-item .post-title:hover {
@@ -724,7 +738,7 @@ main {
 .sidebar .popular .card-img-overlay .line {
   width: 200px;
   height: 2px;
-  background-color: #f8cb33;
+  background-color: #0c8bd4;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -768,6 +782,12 @@ footer .copyright p {
 footer .copyright p a {
   text-decoration: none;
   color: black;
+}
+
+.list-group-item{
+  background-color: transparent !important;
+  height: 50px;
+  padding: 1rem 0rem;
 }
 
 @media (min-width: 768px) {
@@ -824,7 +844,7 @@ footer .copyright p a {
   .aboutus .new-articles .card-img-overlay .line {
     width: 200px;
     height: 2px;
-    background-color: #f8cb33;
+    background-color: #0c8bd4;
     margin-top: 10px;
     margin-bottom: 10px;
   }
@@ -832,7 +852,7 @@ footer .copyright p a {
     padding: 5px 15px;
     background-color: transparent;
     color: white;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 12px;
     border: 1px solid white;
   }
@@ -870,7 +890,7 @@ footer .copyright p a {
     padding: 5px 15px;
     background-color: transparent;
     color: white;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 12px;
     border: 1px solid white;
   }
@@ -902,7 +922,7 @@ footer .copyright p a {
     padding: 10px 20px;
     background-color: transparent;
     color: white;
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-size: 16px;
     border: 2px solid white;
     margin-top: 10px;
@@ -914,19 +934,20 @@ footer .copyright p a {
     display: flex;
   }
   .all-posts .post-item .post-img {
-    max-width: 300px;
-    height: 300px;
+    max-width: 200px;
+    height: 200px;
     overflow: hidden;
     margin-right: 20px;
+    border-radius: 50%;
   }
   .all-posts .post-item .post-main-info .post-title {
     padding: 0px 0px 10px;
   }
   .all-posts .post-item .post-main-info .main-button {
-    position: absolute;
+    position: relative;
     bottom: 0;
     margin: 0px;
-    padding: 5px 15px;
+    padding: 5px 0px;
   }
   .all-posts .post-item .post-main-info a {
     display: inline-block;
@@ -946,4 +967,9 @@ footer .copyright p a {
     padding-right: 10px;
   }
 }
+
+hr{
+  margin: 1.5rem 0 !important;
+}
+
 /*# sourceMappingURL=main.css.map */

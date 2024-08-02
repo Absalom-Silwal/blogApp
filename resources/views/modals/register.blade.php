@@ -7,28 +7,28 @@
         @csrf
         <div class="mb-3">
             <label for="username" class="form-label">Username*</label>
-            <input type="text" name="name" class="form-control" id="username" placeholder="" required>
+            <input type="text" name="name" class="form-control form-control-lg" id="username" placeholder="" required>
             <div class="errors"></div>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email address*</label>
-            <input type="email" name="email" class="form-control" id="email" placeholder="" required>
+            <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="" required>
             <div class="errors"></div>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password*</label>
-            <input type="password" name="password" class="form-control" id="password" placeholder="" required>
+            <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="" required>
             <div class="errors"></div>
         </div>
         <div class="mb-3">
             <label for="confirmPassword" class="form-label">Confirm Password*</label>
-            <input type="password" name="password_confirmation" class="form-control" id="confirmPassword" placeholder="" required>
+            <input type="password" name="password_confirmation" class="form-control form-control-lg" id="confirmPassword" placeholder="" required>
             <div class="errors"></div>
         </div>
         
-        <button type="submit" class="btn btn-primary" id="register">Register</button>
+        <button type="submit" class="btn btn-primary btn-lg w-100" id="register">Register</button>
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <p class="mb-0">Already have an account? <a href="#" class="text-primary show-modal" data-route="/login">Login</a></p>
 </div>
