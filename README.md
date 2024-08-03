@@ -28,16 +28,20 @@ Before you begin, ensure you have met the following requirements:
    git clone https://github.com/Absalom-Silwal/blogApp.git
 
 2. **Navigate to the project directory:**
+    ```bash
     cd your-laravel-app
 
 3. **Install the dependencies:**
+    ```bash
     composer install
 
 4. **Copy the example environment file and generate the application key:**
+    ```bash
     cp .env.example .env
     php artisan key:generate
 
 5. **Set up your database configuration in the .env file::**
+    ```bash
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
@@ -46,19 +50,24 @@ Before you begin, ensure you have met the following requirements:
     DB_PASSWORD=your_database_password
 
 6. **Run the database migrations and seeders:**
+    ```bash
     php artisan migrate
     php artisan db:seed
 
 7. **Install and build frontend assets:**
+    ```bash
     npm install
     npm run dev
 
 
 8. **Start the local development server:**
+    ```bash
     php artisan serve
 
 **To run the application's test suite:**
+    ```bash
     php artisan test
 
-**for api documentation:**
-http://127.0.0.1:8000/api/documentation
+**api documentation:**
+    ```bash
+    http://127.0.0.1:8000/api/documentation
