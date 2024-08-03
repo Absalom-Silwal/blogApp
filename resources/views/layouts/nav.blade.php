@@ -19,7 +19,7 @@
           @php
             $user = auth()->user();
           @endphp
-          <button type="button" class="btn btn-outline-info" id="logout" data-route="">Logout</button>
+          <button type="button" class="btn btn-outline-info text-white" id="logout" data-route="">Logout</button>
           @else
             <button type="button" class="btn btn-outline-info show-modal text-white" data-route="/login">Sign In</button>
             <button type="button" class="btn btn-outline-info show-modal text-white" data-route="/register">Register</button>

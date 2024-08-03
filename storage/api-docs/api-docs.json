@@ -1,19 +1,12 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "L5 OpenApi",
+        "title": "Blog App Api",
         "description": "L5 Swagger OpenApi description",
         "contact": {
-            "email": "darius@matulionis.lt"
+            "email": "absalomsilwal93@gmail.com"
         },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
-        },
-        "version": "1.0.0",
-        "x-logo": {
-            "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
-        }
+        "version": "1.0.0"
     },
     "paths": {
         "/api/view/blog/{id}": {
@@ -134,23 +127,42 @@
                 ]
             }
         },
-        "/api/create/category": {
+        "/api/create/blog": {
             "post": {
                 "tags": [
-                    "Blog Category"
+                    "Blog"
                 ],
-                "summary": "Create a new blog category",
-                "operationId": "44eca2dca9e3a24985b6ed457d1ab6e3",
+                "summary": "Create a new blog post",
+                "operationId": "2fe7968f1f09bcef79165b95ab2ff210",
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
+                                "required": [
+                                    "title",
+                                    "body"
+                                ],
                                 "properties": {
-                                    "name": {
-                                        "description": "Name of the blog category",
+                                    "title": {
+                                        "description": "Title of the blog post",
                                         "type": "string",
-                                        "example": "Technology"
+                                        "example": "A Sample Blog Post"
+                                    },
+                                    "body": {
+                                        "description": "Body content of the blog post",
+                                        "type": "string",
+                                        "example": "This is the body of the blog post."
+                                    },
+                                    "image": {
+                                        "description": "Image file for the blog post",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "category_id": {
+                                        "description": "ID of the blog category",
+                                        "type": "integer",
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"
@@ -160,7 +172,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "blog categories created successfully",
+                        "description": "Blog created sucessfully",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -170,23 +182,33 @@
                                             "items": {
                                                 "properties": {
                                                     "id": {
-                                                        "description": "ID of the blog category",
+                                                        "description": "ID of the blog post",
                                                         "type": "integer",
                                                         "example": 1
                                                     },
-                                                    "name": {
-                                                        "description": "Name of the blog category",
+                                                    "title": {
+                                                        "description": "Title of the blog post",
                                                         "type": "string",
-                                                        "example": "Technology"
+                                                        "example": "Sample Blog Title"
+                                                    },
+                                                    "body": {
+                                                        "description": "Body content of the blog post",
+                                                        "type": "string",
+                                                        "example": "This is the body of the blog post."
+                                                    },
+                                                    "blog_image": {
+                                                        "description": "URL of the blog post image",
+                                                        "type": "string",
+                                                        "example": "http://example.com/image.jpg"
                                                     },
                                                     "created_at": {
-                                                        "description": "Timestamp when the blog category was created",
+                                                        "description": "Timestamp when the blog post was created",
                                                         "type": "string",
                                                         "format": "date-time",
                                                         "example": "2024-08-03T12:00:00Z"
                                                     },
                                                     "updated_at": {
-                                                        "description": "Timestamp when the blog category was last updated",
+                                                        "description": "Timestamp when the blog post was last updated",
                                                         "type": "string",
                                                         "format": "date-time",
                                                         "example": "2024-08-03T12:00:00Z"
@@ -201,24 +223,24 @@
                                             "example": 1
                                         },
                                         "from": {
-                                            "description": "First item on the current page",
+                                            "description": "Starting index of the current page",
                                             "type": "integer",
                                             "example": 1
                                         },
                                         "last_page": {
                                             "description": "Last page number",
                                             "type": "integer",
-                                            "example": 5
+                                            "example": 10
                                         },
                                         "per_page": {
                                             "description": "Number of items per page",
                                             "type": "integer",
-                                            "example": 10
+                                            "example": 5
                                         },
                                         "to": {
-                                            "description": "Last item on the current page",
+                                            "description": "Ending index of the current page",
                                             "type": "integer",
-                                            "example": 10
+                                            "example": 5
                                         },
                                         "total": {
                                             "description": "Total number of items",
@@ -230,40 +252,23 @@
                                             "items": {
                                                 "properties": {
                                                     "url": {
-                                                        "description": "URL for the pagination link",
+                                                        "description": "URL of the pagination link",
                                                         "type": "string",
-                                                        "example": "/api/get/category?page=2"
+                                                        "example": "http://example.com/api/get/blog?page=2"
                                                     },
                                                     "label": {
-                                                        "description": "Label for the pagination link",
+                                                        "description": "Label of the pagination link",
                                                         "type": "string",
                                                         "example": "Next"
                                                     },
                                                     "active": {
-                                                        "description": "Whether the pagination link is active",
+                                                        "description": "Indicates if the link is for the current page",
                                                         "type": "boolean",
-                                                        "example": false
+                                                        "example": true
                                                     }
                                                 },
                                                 "type": "object"
                                             }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "description": "Error message",
-                                            "type": "string",
-                                            "example": "Validation failed for category name."
                                         }
                                     },
                                     "type": "object"
@@ -281,6 +286,33 @@
                                             "description": "Error message",
                                             "type": "string",
                                             "example": "Unauthorized access"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "The title field is required."
+                                        },
+                                        "errors": {
+                                            "description": "Validation errors",
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -482,13 +514,864 @@
                 }
             }
         },
+        "/api/update/blog/{id}": {
+            "put": {
+                "tags": [
+                    "Blog"
+                ],
+                "summary": "Update a blog post",
+                "operationId": "1ca53e582b6485ea4963a53508c91a68",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the blog post to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "body"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "description": "Title of the blog post",
+                                        "type": "string",
+                                        "example": "Updated Blog Title"
+                                    },
+                                    "body": {
+                                        "description": "Body content of the blog post",
+                                        "type": "string",
+                                        "example": "This is the updated body content."
+                                    },
+                                    "image": {
+                                        "description": "Updated image file for the blog post",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "category_id": {
+                                        "description": "ID of the blog category",
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Blog updated sucessfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "ID of the blog post",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "title": {
+                                                        "description": "Title of the blog post",
+                                                        "type": "string",
+                                                        "example": "Sample Blog Title"
+                                                    },
+                                                    "body": {
+                                                        "description": "Body content of the blog post",
+                                                        "type": "string",
+                                                        "example": "This is the body of the blog post."
+                                                    },
+                                                    "blog_image": {
+                                                        "description": "URL of the blog post image",
+                                                        "type": "string",
+                                                        "example": "http://example.com/image.jpg"
+                                                    },
+                                                    "created_at": {
+                                                        "description": "Timestamp when the blog post was created",
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2024-08-03T12:00:00Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "description": "Timestamp when the blog post was last updated",
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2024-08-03T12:00:00Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "current_page": {
+                                            "description": "Current page number",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "from": {
+                                            "description": "Starting index of the current page",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "last_page": {
+                                            "description": "Last page number",
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "per_page": {
+                                            "description": "Number of items per page",
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "to": {
+                                            "description": "Ending index of the current page",
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "total": {
+                                            "description": "Total number of items",
+                                            "type": "integer",
+                                            "example": 50
+                                        },
+                                        "links": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "url": {
+                                                        "description": "URL of the pagination link",
+                                                        "type": "string",
+                                                        "example": "http://example.com/api/get/blog?page=2"
+                                                    },
+                                                    "label": {
+                                                        "description": "Label of the pagination link",
+                                                        "type": "string",
+                                                        "example": "Next"
+                                                    },
+                                                    "active": {
+                                                        "description": "Indicates if the link is for the current page",
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Invalid data provided"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Unauthorized access"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Blog post not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Blog post not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Something went wrong"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/delete/blog/{id}": {
+            "delete": {
+                "tags": [
+                    "Blog"
+                ],
+                "summary": "Delete a blog post",
+                "operationId": "385df31d4898b210a9efaace4e9c4e82",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the blog post to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved paginated list of blogs",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "ID of the blog post",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "title": {
+                                                        "description": "Title of the blog post",
+                                                        "type": "string",
+                                                        "example": "Sample Blog Title"
+                                                    },
+                                                    "body": {
+                                                        "description": "Body content of the blog post",
+                                                        "type": "string",
+                                                        "example": "This is the body of the blog post."
+                                                    },
+                                                    "blog_image": {
+                                                        "description": "URL of the blog post image",
+                                                        "type": "string",
+                                                        "example": "http://example.com/image.jpg"
+                                                    },
+                                                    "created_at": {
+                                                        "description": "Timestamp when the blog post was created",
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2024-08-03T12:00:00Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "description": "Timestamp when the blog post was last updated",
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2024-08-03T12:00:00Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "current_page": {
+                                            "description": "Current page number",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "from": {
+                                            "description": "Starting index of the current page",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "last_page": {
+                                            "description": "Last page number",
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "per_page": {
+                                            "description": "Number of items per page",
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "to": {
+                                            "description": "Ending index of the current page",
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "total": {
+                                            "description": "Total number of items",
+                                            "type": "integer",
+                                            "example": 50
+                                        },
+                                        "links": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "url": {
+                                                        "description": "URL of the pagination link",
+                                                        "type": "string",
+                                                        "example": "http://example.com/api/get/blog?page=2"
+                                                    },
+                                                    "label": {
+                                                        "description": "Label of the pagination link",
+                                                        "type": "string",
+                                                        "example": "Next"
+                                                    },
+                                                    "active": {
+                                                        "description": "Indicates if the link is for the current page",
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Unauthorized access"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Blog post not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Blog post not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Something went wrong"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register a new user",
+                "operationId": "b00c2f1b8cb575735f7e5d90d1944604",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "User's full name",
+                                        "type": "string",
+                                        "maxLength": 255
+                                    },
+                                    "email": {
+                                        "description": "User's email address",
+                                        "type": "string",
+                                        "format": "email",
+                                        "maxLength": 255
+                                    },
+                                    "password": {
+                                        "description": "User's password",
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Confirmation of the user's password",
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "The user's ID",
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "description": "The user's name",
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "description": "The user's email address",
+                                            "type": "string",
+                                            "format": "email"
+                                        },
+                                        "created_at": {
+                                            "description": "Timestamp when the user was created",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updated_at": {
+                                            "description": "Timestamp when the user was last updated",
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "description": "Validation errors",
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User login",
+                "operationId": "f3d87e328d740d737014b74e71dca4c7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "description": "User's email address",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "description": "User's password",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "your_password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "description": "Authentication token",
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Invalid credentials"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Log out a user",
+                "operationId": "eb46dff4d7a64e46f3439998e1749126",
+                "responses": {
+                    "200": {
+                        "description": "Successfully logged out",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Success message",
+                                            "type": "string",
+                                            "example": "Logged out successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized, invalid or missing token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Something went wrong."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/create/category": {
+            "post": {
+                "tags": [
+                    "Blog Category"
+                ],
+                "summary": "Create a new blog category",
+                "operationId": "aa443daf106fd7c63eb35780fe0bbdfe",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of the blog category",
+                                        "type": "string",
+                                        "example": "Technology"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "blog categories created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "ID of the blog category",
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "description": "Name of the blog category",
+                                                        "type": "string",
+                                                        "example": "Technology"
+                                                    },
+                                                    "created_at": {
+                                                        "description": "Timestamp when the blog category was created",
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2024-08-03T12:00:00Z"
+                                                    },
+                                                    "updated_at": {
+                                                        "description": "Timestamp when the blog category was last updated",
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2024-08-03T12:00:00Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "current_page": {
+                                            "description": "Current page number",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "from": {
+                                            "description": "First item on the current page",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "last_page": {
+                                            "description": "Last page number",
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "per_page": {
+                                            "description": "Number of items per page",
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "to": {
+                                            "description": "Last item on the current page",
+                                            "type": "integer",
+                                            "example": 10
+                                        },
+                                        "total": {
+                                            "description": "Total number of items",
+                                            "type": "integer",
+                                            "example": 50
+                                        },
+                                        "links": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "url": {
+                                                        "description": "URL for the pagination link",
+                                                        "type": "string",
+                                                        "example": "/api/get/category?page=2"
+                                                    },
+                                                    "label": {
+                                                        "description": "Label for the pagination link",
+                                                        "type": "string",
+                                                        "example": "Next"
+                                                    },
+                                                    "active": {
+                                                        "description": "Whether the pagination link is active",
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Validation failed for category name."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Unauthorized access"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Error message",
+                                            "type": "string",
+                                            "example": "Something went wrong"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/update/category/{id}": {
             "put": {
                 "tags": [
                     "Blog Category"
                 ],
                 "summary": "Update a blog category",
-                "operationId": "90d70040952ebcd3082ab704c202c68c",
+                "operationId": "c5f3b1f6e34fd0986e6b46efc823a137",
                 "parameters": [
                     {
                         "name": "id",
@@ -690,7 +1573,7 @@
                     "Blog Category"
                 ],
                 "summary": "Delete a blog category",
-                "operationId": "fc3eb61bcdf9c9ca5e865aad22ee7e80",
+                "operationId": "192a33ab2eea3469e2d0342c4e72aa6e",
                 "parameters": [
                     {
                         "name": "id",
@@ -868,189 +1751,15 @@
                     }
                 }
             }
-        },
-        "/api/register": {
-            "post": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Register a new user",
-                "operationId": "b00c2f1b8cb575735f7e5d90d1944604",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "email",
-                                    "password",
-                                    "password_confirmation"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "description": "User's full name",
-                                        "type": "string",
-                                        "maxLength": 255
-                                    },
-                                    "email": {
-                                        "description": "User's email address",
-                                        "type": "string",
-                                        "format": "email",
-                                        "maxLength": 255
-                                    },
-                                    "password": {
-                                        "description": "User's password",
-                                        "type": "string",
-                                        "format": "password"
-                                    },
-                                    "password_confirmation": {
-                                        "description": "Confirmation of the user's password",
-                                        "type": "string",
-                                        "format": "password"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "User registered successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "id": {
-                                            "description": "The user's ID",
-                                            "type": "integer"
-                                        },
-                                        "name": {
-                                            "description": "The user's name",
-                                            "type": "string"
-                                        },
-                                        "email": {
-                                            "description": "The user's email address",
-                                            "type": "string",
-                                            "format": "email"
-                                        },
-                                        "created_at": {
-                                            "description": "Timestamp when the user was created",
-                                            "type": "string",
-                                            "format": "date-time"
-                                        },
-                                        "updated_at": {
-                                            "description": "Timestamp when the user was last updated",
-                                            "type": "string",
-                                            "format": "date-time"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "description": "Error message",
-                                            "type": "string"
-                                        },
-                                        "errors": {
-                                            "description": "Validation errors",
-                                            "type": "object",
-                                            "additionalProperties": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/login": {
-            "post": {
-                "tags": [
-                    "Authentication"
-                ],
-                "summary": "User login",
-                "operationId": "f3d87e328d740d737014b74e71dca4c7",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "email",
-                                    "password"
-                                ],
-                                "properties": {
-                                    "email": {
-                                        "description": "User's email address",
-                                        "type": "string",
-                                        "format": "email",
-                                        "example": "user@example.com"
-                                    },
-                                    "password": {
-                                        "description": "User's password",
-                                        "type": "string",
-                                        "format": "password",
-                                        "example": "your_password"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful login",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "token": {
-                                            "description": "Authentication token",
-                                            "type": "string",
-                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "description": "Error message",
-                                            "type": "string",
-                                            "example": "Invalid credentials"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Enter JWT Bearer token in the Authorization header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
             }
         }
     },

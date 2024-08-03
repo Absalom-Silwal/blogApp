@@ -11,7 +11,9 @@ class BlogCategoryService implements CrudInterface
     public function get($request){
         try {
             $limit =$request->limit?$request->limit:null;
-            $categories = BlogCategory::where('is_deleted',0)->withCount('blogs')->orderBy('blogs_count','desc')->paginate();
+            $categories = BlogCategory::where('is_deleted',0)->withCount(['blogs'=>function($query){
+                $query->where('is_deleted',0);
+            }])->orderBy('blogs_count','desc')->paginate();
             
             return response()->json($categories,200);
         } catch (\Throwable $th) {

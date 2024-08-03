@@ -20,7 +20,7 @@ Route::namespace('App\Http\Controllers\Api')->group(function(){
     Route::get('/get/{type}','BlogAppApiController@get');
     Route::get('/view/{type}/{id}','BlogAppApiController@view');
     Route::middleware('auth:sanctum')->group(function(){
-        
+        Route::post('logout', 'BlogAppApiController@logout')->name('logout');
         Route::post('/upload','BlogAppApiController@upload')->name('upload.image');
         Route::post('/assign/category-to/{blog}','BlogAppApiController@assignCategory');
         Route::post('/create/{type}','BlogAppApiController@create');

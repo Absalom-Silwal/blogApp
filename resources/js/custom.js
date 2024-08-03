@@ -38,6 +38,10 @@ function blogTemplator(blogs){
         const pages = pageTemplator(blogs.links);
         $('.pagination').empty().html(pages);
     }
+    else{
+        $('.all-posts').empty().html(`<span>Blogs not Available</span>`)
+        $('.pagination').empty() 
+    }
     
 }
 function categoriesTemplator(categories){
@@ -46,7 +50,10 @@ function categoriesTemplator(categories){
         const isUser = $('#isUser').val();
         return `
                 <li class="list-group-item">
-                    ${category.name}<span> (${category.blogs_count})</span>
+                    <a class="text-decoration-none text-dark text-capitalize category-filter" data-id="${category.id}" href="#">
+                    ${category.name}<span class="${isUser=='false'?'float-end':''}"> (${category.blogs_count})</span>
+                    </a>
+                    
                     ${isUser=='true'?`
                     <div class="float-end">
                         <span class="">
@@ -98,7 +105,8 @@ function getBlogs(url=null){
  });
 }
 
-function getCategories(){
+function getCategories(url=null){
+    
     $.ajax({
         url:'/get/category',
         method:'GET',
@@ -258,7 +266,12 @@ $(document).off('click','.delete').on('click','.delete',function(e){
      
         
     }
-})
+});
+$(document).off('click','.category-filter').on('click','.category-filter',function(e){
+    e.preventDefault();
+    const categoryId = $(this).attr('data-id');
+    getBlogs(`/get/blog?category=${categoryId}`); 
+});
 
 $(document).off('click','#login').on('click','#login',function(e){
     e.preventDefault();

@@ -55,4 +55,23 @@ class UserTest extends TestCase
         //echo $response;
     }
 
+
+    public function testAuthencticatedUserCanLogout(){
+        // Create a user and a personal access token
+        $user = User::factory()->create();
+        $token = $user->createToken('TestToken')->plainTextToken;
+
+        // Make a request to the logout endpoint with the token
+        $response = $this->withHeaders([
+            'Authorization' => "Bearer $token",
+        ])->post('/api/logout');
+
+        // Assert that the response is successful and the token is deleted
+        $response->assertStatus(200);
+        $response->assertJson(['message' => 'Logged out successfully']);
+
+        // Check that the token is no longer valid
+        $this->assertNull($user->tokens->find($token));
+    }
+
 }

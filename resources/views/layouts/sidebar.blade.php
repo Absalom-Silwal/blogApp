@@ -1,18 +1,24 @@
 <div class="sidebar col-md-4">
     <div class="input-group">
       <div class="form-outline">
-        <input id="search-input" type="search" id="form1" class="form-control" placeholder="search" />
+        <input id="search-input" type="search" id="form1" class="form-control" placeholder="search by title or body content " />
       </div>
     </div>
     <div class="recent-posts pt-5">
-      <h4 class="mb-3">CATEGORIES</h4>
+      <div class="col-12 d-flex align-items-center justify-content-between mb-3">
+        <h4 class="m-0">Categories</h4>
+        @if(auth()->check())
+        <a class=" btn btn-primary float-end show-modal" data-route="/addEdit/category"> <i class="fas fa-plus"></i> Categories</a>
+        @endif
+      </div>
+      
+      
+        
+      
+      
       <div class="post-item ">
         <ul class="list-group list-group-flush categories-list">
-          <li class="list-group-item">Cras justo odio <span class="badge badge-primary badge-pill text-dark float-end">14</span></li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          
         </ul>
       </div>
 

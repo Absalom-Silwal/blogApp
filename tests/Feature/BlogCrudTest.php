@@ -123,7 +123,7 @@ class BlogCrudTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $this->token,
         ])->post("/api/update/blog/{$blog->id}",[
-            'name'=>$title,
+            'title'=>$title,
             'body'=>$body,
             'image'=>$file,
             'category_id'=> $category?$category->id:null

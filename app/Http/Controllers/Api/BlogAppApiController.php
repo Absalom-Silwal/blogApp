@@ -13,20 +13,11 @@ use OpenApi\Annotations as OA;
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      x={
- *          "logo": {
- *              "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
- *          }
- *      },
- *      title="L5 OpenApi",
+ *      title="Blog App Api",
  *      description="L5 Swagger OpenApi description",
  *      @OA\Contact(
- *          email="darius@matulionis.lt"
+ *          email="absalomsilwal93@gmail.com"
  *      ),
- *     @OA\License(
- *         name="Apache 2.0",
- *         url="https://www.apache.org/licenses/LICENSE-2.0.html"
- *     )
  * )
  */
 class BlogAppApiController extends BaseController
@@ -332,166 +323,7 @@ class BlogAppApiController extends BaseController
      * )
      */
 
-        /**
-     * @OA\Post(
-     *     path="/api/create/category",
-     *     summary="Create a new blog category",
-     *     tags={"Blog Category"},
-     *     security={{"bearerAuth": {}}},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string",
-     *                 description="Name of the blog category",
-     *                 example="Technology"
-     *             )
-     *         )
-     *     ),
-   *     @OA\Response(
-     *         response=200,
-     *         description="blog categories created successfully",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="data",
-     *                 type="array",
-     *                 @OA\Items(
-     *                     type="object",
-     *                     @OA\Property(
-     *                         property="id",
-     *                         type="integer",
-     *                         description="ID of the blog category",
-     *                         example=1
-     *                     ),
-     *                     @OA\Property(
-     *                         property="name",
-     *                         type="string",
-     *                         description="Name of the blog category",
-     *                         example="Technology"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="created_at",
-     *                         type="string",
-     *                         format="date-time",
-     *                         description="Timestamp when the blog category was created",
-     *                         example="2024-08-03T12:00:00Z"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="updated_at",
-     *                         type="string",
-     *                         format="date-time",
-     *                         description="Timestamp when the blog category was last updated",
-     *                         example="2024-08-03T12:00:00Z"
-     *                     )
-     *                 )
-     *             ),
-     *             @OA\Property(
-     *                 property="current_page",
-     *                 type="integer",
-     *                 description="Current page number",
-     *                 example=1
-     *             ),
-     *             @OA\Property(
-     *                 property="from",
-     *                 type="integer",
-     *                 description="First item on the current page",
-     *                 example=1
-     *             ),
-     *             @OA\Property(
-     *                 property="last_page",
-     *                 type="integer",
-     *                 description="Last page number",
-     *                 example=5
-     *             ),
-     *             @OA\Property(
-     *                 property="per_page",
-     *                 type="integer",
-     *                 description="Number of items per page",
-     *                 example=10
-     *             ),
-     *             @OA\Property(
-     *                 property="to",
-     *                 type="integer",
-     *                 description="Last item on the current page",
-     *                 example=10
-     *             ),
-     *             @OA\Property(
-     *                 property="total",
-     *                 type="integer",
-     *                 description="Total number of items",
-     *                 example=50
-     *             ),
-     *             @OA\Property(
-     *                 property="links",
-     *                 type="array",
-     *                 @OA\Items(
-     *                     type="object",
-     *                     @OA\Property(
-     *                         property="url",
-     *                         type="string",
-     *                         description="URL for the pagination link",
-     *                         example="/api/get/category?page=2"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="label",
-     *                         type="string",
-     *                         description="Label for the pagination link",
-     *                         example="Next"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="active",
-     *                         type="boolean",
-     *                         description="Whether the pagination link is active",
-     *                         example=false
-     *                     )
-     *                 )
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=400,
-     *         description="Bad Request",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 description="Error message",
-     *                 example="Validation failed for category name."
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=401,
-     *         description="Unauthorized",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 description="Error message",
-     *                 example="Unauthorized access"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Internal Server Error",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 description="Error message",
-     *                 example="Something went wrong"
-     *             )
-     *         )
-     *     )
-     * )
-     */
+
 
     public function create(Request $request,$type){
         $service = $this->getService($type);
@@ -1047,7 +879,585 @@ class BlogAppApiController extends BaseController
      * )
      */
 
+
+
+    public function update(Request $request,$type,int $id){
+        
+        $service = $this->getService($type);
+        return $service->update($id,$request);
+    }
+
        /**
+     * @OA\Delete(
+     *     path="/api/delete/blog/{id}",
+     *     summary="Delete a blog post",
+     *     tags={"Blog"},
+     *     security={{"bearerAuth": {}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the blog post to delete",
+     *         required=true,
+     *         @OA\Schema(type="integer", example=1)
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully retrieved paginated list of blogs",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         description="ID of the blog post",
+     *                         example=1
+     *                     ),
+     *                     @OA\Property(
+     *                         property="title",
+     *                         type="string",
+     *                         description="Title of the blog post",
+     *                         example="Sample Blog Title"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="body",
+     *                         type="string",
+     *                         description="Body content of the blog post",
+     *                         example="This is the body of the blog post."
+     *                     ),
+     *                     @OA\Property(
+     *                         property="blog_image",
+     *                         type="string",
+     *                         description="URL of the blog post image",
+     *                         example="http://example.com/image.jpg"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="created_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog post was created",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="updated_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog post was last updated",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="current_page",
+     *                 type="integer",
+     *                 description="Current page number",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="from",
+     *                 type="integer",
+     *                 description="Starting index of the current page",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="last_page",
+     *                 type="integer",
+     *                 description="Last page number",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="per_page",
+     *                 type="integer",
+     *                 description="Number of items per page",
+     *                 example=5
+     *             ),
+     *             @OA\Property(
+     *                 property="to",
+     *                 type="integer",
+     *                 description="Ending index of the current page",
+     *                 example=5
+     *             ),
+     *             @OA\Property(
+     *                 property="total",
+     *                 type="integer",
+     *                 description="Total number of items",
+     *                 example=50
+     *             ),
+     *             @OA\Property(
+     *                 property="links",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="url",
+     *                         type="string",
+     *                         description="URL of the pagination link",
+     *                         example="http://example.com/api/get/blog?page=2"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="label",
+     *                         type="string",
+     *                         description="Label of the pagination link",
+     *                         example="Next"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="active",
+     *                         type="boolean",
+     *                         description="Indicates if the link is for the current page",
+     *                         example=true
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Unauthorized access"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Blog post not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Blog post not found"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Something went wrong"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+
+
+    public function delete(Request $request,$type,$id){
+        $service = $this->getService($type);
+        $resp = $service->delete($request,$id);
+        return $resp;
+    }
+
+
+ /**
+     * @OA\Post(
+     *     path="/api/register",
+     *     summary="Register a new user",
+     *     tags={"User"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *             @OA\JsonContent(
+     *                 type="object",
+     *                 required={"name", "email", "password", "password_confirmation"},
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string",
+     *                     description="User's full name",
+     *                     maxLength=255
+     *                 ),
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string",
+     *                     format="email",
+     *                     description="User's email address",
+     *                     maxLength=255
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string",
+     *                     format="password",
+     *                     description="User's password"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password_confirmation",
+     *                     type="string",
+     *                     format="password",
+     *                     description="Confirmation of the user's password"
+     *                 )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="User registered successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="id",
+     *                 type="integer",
+     *                 description="The user's ID"
+     *             ),
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string",
+     *                 description="The user's name"
+     *             ),
+     *             @OA\Property(
+     *                 property="email",
+     *                 type="string",
+     *                 format="email",
+     *                 description="The user's email address"
+     *             ),
+     *             @OA\Property(
+     *                 property="created_at",
+     *                 type="string",
+     *                 format="date-time",
+     *                 description="Timestamp when the user was created"
+     *             ),
+     *             @OA\Property(
+     *                 property="updated_at",
+     *                 type="string",
+     *                 format="date-time",
+     *                 description="Timestamp when the user was last updated"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message"
+     *             ),
+     *             @OA\Property(
+     *                 property="errors",
+     *                 type="object",
+     *                 additionalProperties={
+     *                     "type":"array",
+     *                     "items":{"type":"string"}
+     *                 },
+     *                 description="Validation errors"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+
+    public function register(Request $request){
+        $type='auth';
+        $service = $this->getService($type);
+        return $service->register($request);
+    }
+
+   /**
+     * @OA\Post(
+     *     path="/api/login",
+     *     summary="User login",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *             @OA\JsonContent(
+     *                 type="object",
+     *                 required={"email", "password"},
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string",
+     *                     format="email",
+     *                     description="User's email address",
+     *                     example="user@example.com"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string",
+     *                     format="password",
+     *                     description="User's password",
+     *                     example="your_password"
+     *                 )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful login",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="token",
+     *                 type="string",
+     *                 description="Authentication token",
+     *                 example="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Invalid credentials"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function login(Request $request){
+        
+        $type='auth';
+        $service = $this->getService($type);
+        return  $service->login($request);
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/api/logout",
+     *     summary="Log out a user",
+     *     tags={"Authentication"},
+     *     security={{"bearerAuth": {}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully logged out",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Success message",
+     *                 example="Logged out successfully"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized, invalid or missing token",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Unauthorized"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Something went wrong."
+     *             )
+     *         )
+     *     )
+     * )
+     *
+     * @OA\SecurityScheme(
+     *     securityScheme="bearerAuth",
+     *     type="http",
+     *     scheme="bearer",
+     *     bearerFormat="JWT",
+     *     description="Enter JWT Bearer token in the Authorization header"
+     * )
+     */
+
+    public function logout(Request $request){
+        
+        $type='auth';
+        $service = $this->getService($type);
+        return  $service->apiLogout($request);
+    }
+
+            /**
+     * @OA\Post(
+     *     path="/api/create/category",
+     *     summary="Create a new blog category",
+     *     tags={"Blog Category"},
+     *     security={{"bearerAuth": {}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string",
+     *                 description="Name of the blog category",
+     *                 example="Technology"
+     *             )
+     *         )
+     *     ),
+   *     @OA\Response(
+     *         response=200,
+     *         description="blog categories created successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         description="ID of the blog category",
+     *                         example=1
+     *                     ),
+     *                     @OA\Property(
+     *                         property="name",
+     *                         type="string",
+     *                         description="Name of the blog category",
+     *                         example="Technology"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="created_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was created",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="updated_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was last updated",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="current_page",
+     *                 type="integer",
+     *                 description="Current page number",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="from",
+     *                 type="integer",
+     *                 description="First item on the current page",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="last_page",
+     *                 type="integer",
+     *                 description="Last page number",
+     *                 example=5
+     *             ),
+     *             @OA\Property(
+     *                 property="per_page",
+     *                 type="integer",
+     *                 description="Number of items per page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="to",
+     *                 type="integer",
+     *                 description="Last item on the current page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="total",
+     *                 type="integer",
+     *                 description="Total number of items",
+     *                 example=50
+     *             ),
+     *             @OA\Property(
+     *                 property="links",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="url",
+     *                         type="string",
+     *                         description="URL for the pagination link",
+     *                         example="/api/get/category?page=2"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="label",
+     *                         type="string",
+     *                         description="Label for the pagination link",
+     *                         example="Next"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="active",
+     *                         type="boolean",
+     *                         description="Whether the pagination link is active",
+     *                         example=false
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Validation failed for category name."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Unauthorized access"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Something went wrong"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    public function upload(Request $request){
+        $type='file';
+        $service = $this->getService($type);
+        return $service->upload($request);
+    }
+           /**
      * @OA\Put(
      *     path="/api/update/category/{id}",
      *     summary="Update a blog category",
@@ -1226,182 +1636,14 @@ class BlogAppApiController extends BaseController
      *     )
      * )
      */
-
-    public function update(Request $request,$type,int $id){
-        
+    public function assignCategory(Request $request,$blog){
+        $type='blog';
         $service = $this->getService($type);
-        return $service->update($id,$request);
+        return $service->assignCategory($request,$blog);
+        
     }
 
-       /**
-     * @OA\Delete(
-     *     path="/api/delete/blog/{id}",
-     *     summary="Delete a blog post",
-     *     tags={"Blog"},
-     *     security={{"bearerAuth": {}}},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="ID of the blog post to delete",
-     *         required=true,
-     *         @OA\Schema(type="integer", example=1)
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successfully retrieved paginated list of blogs",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="data",
-     *                 type="array",
-     *                 @OA\Items(
-     *                     type="object",
-     *                     @OA\Property(
-     *                         property="id",
-     *                         type="integer",
-     *                         description="ID of the blog post",
-     *                         example=1
-     *                     ),
-     *                     @OA\Property(
-     *                         property="title",
-     *                         type="string",
-     *                         description="Title of the blog post",
-     *                         example="Sample Blog Title"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="body",
-     *                         type="string",
-     *                         description="Body content of the blog post",
-     *                         example="This is the body of the blog post."
-     *                     ),
-     *                     @OA\Property(
-     *                         property="blog_image",
-     *                         type="string",
-     *                         description="URL of the blog post image",
-     *                         example="http://example.com/image.jpg"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="created_at",
-     *                         type="string",
-     *                         format="date-time",
-     *                         description="Timestamp when the blog post was created",
-     *                         example="2024-08-03T12:00:00Z"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="updated_at",
-     *                         type="string",
-     *                         format="date-time",
-     *                         description="Timestamp when the blog post was last updated",
-     *                         example="2024-08-03T12:00:00Z"
-     *                     )
-     *                 )
-     *             ),
-     *             @OA\Property(
-     *                 property="current_page",
-     *                 type="integer",
-     *                 description="Current page number",
-     *                 example=1
-     *             ),
-     *             @OA\Property(
-     *                 property="from",
-     *                 type="integer",
-     *                 description="Starting index of the current page",
-     *                 example=1
-     *             ),
-     *             @OA\Property(
-     *                 property="last_page",
-     *                 type="integer",
-     *                 description="Last page number",
-     *                 example=10
-     *             ),
-     *             @OA\Property(
-     *                 property="per_page",
-     *                 type="integer",
-     *                 description="Number of items per page",
-     *                 example=5
-     *             ),
-     *             @OA\Property(
-     *                 property="to",
-     *                 type="integer",
-     *                 description="Ending index of the current page",
-     *                 example=5
-     *             ),
-     *             @OA\Property(
-     *                 property="total",
-     *                 type="integer",
-     *                 description="Total number of items",
-     *                 example=50
-     *             ),
-     *             @OA\Property(
-     *                 property="links",
-     *                 type="array",
-     *                 @OA\Items(
-     *                     type="object",
-     *                     @OA\Property(
-     *                         property="url",
-     *                         type="string",
-     *                         description="URL of the pagination link",
-     *                         example="http://example.com/api/get/blog?page=2"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="label",
-     *                         type="string",
-     *                         description="Label of the pagination link",
-     *                         example="Next"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="active",
-     *                         type="boolean",
-     *                         description="Indicates if the link is for the current page",
-     *                         example=true
-     *                     )
-     *                 )
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=401,
-     *         description="Unauthorized",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 description="Error message",
-     *                 example="Unauthorized access"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="Blog post not found",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 description="Error message",
-     *                 example="Blog post not found"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=500,
-     *         description="Internal Server Error",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 description="Error message",
-     *                 example="Something went wrong"
-     *             )
-     *         )
-     *     )
-     * )
-     */
-
-      /**
+          /**
      * @OA\Delete(
      *     path="/api/delete/category/{id}",
      *     summary="Delete a blog category",
@@ -1568,196 +1810,6 @@ class BlogAppApiController extends BaseController
      *     )
      * )
      */
-
-    public function delete(Request $request,$type,$id){
-        $service = $this->getService($type);
-        $resp = $service->delete($request,$id);
-        return $resp;
-    }
-
-
- /**
-     * @OA\Post(
-     *     path="/api/register",
-     *     summary="Register a new user",
-     *     tags={"User"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *             @OA\JsonContent(
-     *                 type="object",
-     *                 required={"name", "email", "password", "password_confirmation"},
-     *                 @OA\Property(
-     *                     property="name",
-     *                     type="string",
-     *                     description="User's full name",
-     *                     maxLength=255
-     *                 ),
-     *                 @OA\Property(
-     *                     property="email",
-     *                     type="string",
-     *                     format="email",
-     *                     description="User's email address",
-     *                     maxLength=255
-     *                 ),
-     *                 @OA\Property(
-     *                     property="password",
-     *                     type="string",
-     *                     format="password",
-     *                     description="User's password"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="password_confirmation",
-     *                     type="string",
-     *                     format="password",
-     *                     description="Confirmation of the user's password"
-     *                 )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="User registered successfully",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="id",
-     *                 type="integer",
-     *                 description="The user's ID"
-     *             ),
-     *             @OA\Property(
-     *                 property="name",
-     *                 type="string",
-     *                 description="The user's name"
-     *             ),
-     *             @OA\Property(
-     *                 property="email",
-     *                 type="string",
-     *                 format="email",
-     *                 description="The user's email address"
-     *             ),
-     *             @OA\Property(
-     *                 property="created_at",
-     *                 type="string",
-     *                 format="date-time",
-     *                 description="Timestamp when the user was created"
-     *             ),
-     *             @OA\Property(
-     *                 property="updated_at",
-     *                 type="string",
-     *                 format="date-time",
-     *                 description="Timestamp when the user was last updated"
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation error",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 description="Error message"
-     *             ),
-     *             @OA\Property(
-     *                 property="errors",
-     *                 type="object",
-     *                 additionalProperties={
-     *                     "type":"array",
-     *                     "items":{"type":"string"}
-     *                 },
-     *                 description="Validation errors"
-     *             )
-     *         )
-     *     )
-     * )
-     */
-
-
-    public function register(Request $request){
-        $type='auth';
-        $service = $this->getService($type);
-        return $service->register($request);
-    }
-
-   /**
-     * @OA\Post(
-     *     path="/api/login",
-     *     summary="User login",
-     *     tags={"Authentication"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *             @OA\JsonContent(
-     *                 type="object",
-     *                 required={"email", "password"},
-     *                 @OA\Property(
-     *                     property="email",
-     *                     type="string",
-     *                     format="email",
-     *                     description="User's email address",
-     *                     example="user@example.com"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="password",
-     *                     type="string",
-     *                     format="password",
-     *                     description="User's password",
-     *                     example="your_password"
-     *                 )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successful login",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="token",
-     *                 type="string",
-     *                 description="Authentication token",
-     *                 example="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=401,
-     *         description="Unauthorized",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Property(
-     *                 property="message",
-     *                 type="string",
-     *                 description="Error message",
-     *                 example="Invalid credentials"
-     *             )
-     *         )
-     *     )
-     * )
-     */
-    public function login(Request $request){
-        
-        $type='auth';
-        $service = $this->getService($type);
-        return  $service->login($request);
-    }
-    public function logout(Request $request){
-        
-        $type='auth';
-        $service = $this->getService($type);
-        return  $service->apiLogin($request);
-    }
-
-    public function upload(Request $request){
-        $type='file';
-        $service = $this->getService($type);
-        return $service->upload($request);
-    }
-
-    public function assignCategory(Request $request,$blog){
-        $type='blog';
-        $service = $this->getService($type);
-        return $service->assignCategory($request,$blog);
-        
-    }
 
     protected function getService($type){
         $serviceFactory = new ServiceFactory();

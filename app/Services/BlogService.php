@@ -89,7 +89,6 @@ class BlogService implements CrudInterface
                 'body' => 'required|string',
                 //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
-            
             $blog = Blog::find($id);
             $blog->title = $request->input('title');
             $blog->body = $request->input('body');

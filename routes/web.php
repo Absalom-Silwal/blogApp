@@ -20,18 +20,14 @@ Route::namespace('App\Http\Controllers')->group(function(){
     Route::get('/get/{type}','BlogAppController@get');
     Route::get('/getFile','BlogAppController@getFile');
     Route::get('/addEdit/{type}','BlogAppController@addEdit');
-    Route::post('/create/{type}','BlogAppController@create');
-    Route::post('/update/{type}/{id}','BlogAppController@update');
-    Route::post('/delete/{type}/{id}','BlogAppController@delete');
     Route::post('register','BlogAppController@register');
     Route::post('login', 'BlogAppController@login');
-    Route::post('logout', 'BlogAppController@logout');
-    // Route::middleware('auth:sanctum')->prefix('api')->group(function () {
-    //     //need type variable
-    //     Route::get('/view/{type}/{id}','BlogAppController@view');
-    //     Route::post('/create/{type}','BlogAppController@create');
-    //     Route::post('/update/{type}/{id}','BlogAppController@update');
-    //     Route::post('/delete/{type}/{id}','BlogAppController@delete');
-    // });
+    Route::middleware('auth:web')->group(function(){
+        Route::post('logout', 'BlogAppController@logout');
+        Route::post('/create/{type}','BlogAppController@create');
+        Route::post('/update/{type}/{id}','BlogAppController@update');
+        Route::post('/delete/{type}/{id}','BlogAppController@delete');
+    });
+    
 });
 
