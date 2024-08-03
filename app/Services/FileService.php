@@ -11,6 +11,9 @@ class FileService
     public function get($request){
         $storage_location = storage_path('app');
         $file_location = $storage_location.'/'.$request->file;
+        if(!$request->file){
+            return response()->file(public_path('/images/noimage.jpg'));
+        }
         
         if(file_exists($file_location)){
             return response()->file($file_location);

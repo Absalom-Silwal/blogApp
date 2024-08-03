@@ -36,7 +36,6 @@ class BlogService implements CrudInterface
 
     public function view($id)
     {
-        // Implement blog view logic
         $blog = Blog::find($id);
         return response()->json($blog,200);
     }

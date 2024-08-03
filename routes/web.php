@@ -16,6 +16,7 @@ Route::namespace('App\Http\Controllers')->group(function(){
     Route::get('','BlogAppController@index');
     Route::get('/login','BlogAppController@loginModal');
     Route::get('/register','BlogAppController@registerModal');
+    Route::get('/detail/{id}','BlogAppController@detail');
     Route::get('/get/{type}','BlogAppController@get');
     Route::get('/getFile','BlogAppController@getFile');
     Route::get('/addEdit/{type}','BlogAppController@addEdit');

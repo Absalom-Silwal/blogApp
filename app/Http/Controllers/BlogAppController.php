@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Factories\ServiceFactory;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -25,6 +26,11 @@ class BlogAppController extends BaseController
 
     public function registerModal(){
         return view('modals.register');
+    }
+
+    public function detail($id){
+        $blog= Blog::find($id);
+        return view('pages.detail',compact('blog'));
     }
 
     public function view($type,$id){

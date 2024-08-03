@@ -11,7 +11,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ms-auto">
-           
+            <a class="nav-link" href="/">home</a>
           </div>
         </div>
         @if($isLogedIn)

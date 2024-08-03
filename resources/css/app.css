@@ -502,7 +502,9 @@ nav .nav-link:hover {
   background-color: black;
   font-weight: 600;
 }
-
+.single-post{
+  padding-top: 100px;
+}
 .single-post img {
   width: 100%;
   padding: 20px 0px;

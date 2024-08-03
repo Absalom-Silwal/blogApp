@@ -27,7 +27,7 @@ function blogTemplator(blogs){
             <span>${blog.body}</span>
           </div>
           
-          <a href="./detai/${blog.id}" class="main-button">Read More ></a>
+          <a href="./detail/${blog.id}" class="main-button">Read More ></a>
         </div>
       </div>
       ${count+1 != blogs.length?'<hr>':''}`

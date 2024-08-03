@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\Blog;
 use App\Models\User;
 use Faker\Factory as Faker;
+use App\Models\BlogCategory;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -31,7 +32,8 @@ class BlogCrudTest extends TestCase
     }
     public function testUserCanCreateBlog()
     {
-        $this->withoutExceptionHandling();    
+        $this->withoutExceptionHandling(); 
+        $category = BlogCategory::where('is_deleted',0)->first();   
         Storage::fake('public');
         $file = UploadedFile::fake()->image($this->faker->word.'.jpg');
         $title = $this->faker->sentence;
@@ -41,7 +43,8 @@ class BlogCrudTest extends TestCase
         ])->post('/api/create/blog',[
             'title'=>$title,
             'body'=>$body,
-            'image'=>$file
+            'image'=>$file,
+            'category_id'=>$category?$category->id:null 
         ]);
        
         $response->assertStatus(200);
@@ -54,16 +57,65 @@ class BlogCrudTest extends TestCase
 
     public function testUserCanReadBlogs(){
         $this->withoutExceptionHandling();
-        $response=$this->getJson('/api/get/blog',[
-            'limit'=>5
+        $category = BlogCategory::where('is_deleted',0)->first(); 
+        $response=$this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->token,
+        ])->getJson('/api/get/blog',[
+            'limit'=>5,
+            'search'=>'abcd',
+            'category'=>$category->id
         ]);
         //dd($response);
         $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'title',
+                    'body',
+                    'blog_image',
+                    'created_at',
+                    'updated_at'
+                ]
+            ],
+            
+            'current_page',
+            'from',
+            'last_page',
+            'per_page',
+            'to',
+            'total',
+            'links' => [ 
+                [
+                'url',
+                'label',
+                'active',
+                ],
+            ]
+        ]);
+    }
+
+    public function testUserCanViewBlog(){
+        $blog = Blog::where('is_deleted',0)->first(); 
+        $response=$this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->token,
+        ])->get("/api/view/blog/{$blog->id}");
+
+        $response->assertStatus(200);
+        
+        $response->assertJsonStructure([
+            'title',
+            'body',
+            'blog_image',
+            'created_at',
+            'updated_at'  
+        ]);
     }
 
     public function testUserCanUpdateBlog(){
         $this->withoutExceptionHandling();
         $blog = Blog::where('is_deleted',0)->first();
+        $category = BlogCategory::where('is_deleted',0)->first();   
         Storage::fake('public');
         $file = UploadedFile::fake()->image($this->faker->word.'.jpg');
         $title = $this->faker->sentence;
@@ -73,7 +125,8 @@ class BlogCrudTest extends TestCase
         ])->post("/api/update/blog/{$blog->id}",[
             'name'=>$title,
             'body'=>$body,
-            'image'=>$file
+            'image'=>$file,
+            'category_id'=> $category?$category->id:null
         ]);
         $response->assertStatus(200);
         $this->assertDatabaseHas('blogs',[
