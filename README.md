@@ -64,10 +64,10 @@ Before you begin, ensure you have met the following requirements:
     ```bash
     php artisan serve
 
-**To run the application's test suite:**
+9. **To run the application's test suite:**
     ```bash
     php artisan test
 
-**api documentation:**
+10. **API Documentation**
     ```bash
     http://127.0.0.1:8000/api/documentation
