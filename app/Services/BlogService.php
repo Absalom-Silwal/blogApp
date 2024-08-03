@@ -84,11 +84,15 @@ class BlogService implements CrudInterface
     public function update($id,$request){
 
         try {
-            $request = new UpdateBlogRequest($request->all());
+            $request->validate([
+                'title' => 'required|string',
+                'body' => 'required|string',
+                //'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+            
             $blog = Blog::find($id);
-            $blog->title = $request->input('name');
+            $blog->title = $request->input('title');
             $blog->body = $request->input('body');
-        
             if ($request->hasFile('image')) {
                 $fileName = time() . '.' . $request->file('image')->getClientOriginalExtension();
                 $path=$request->file('image')->storeAs('images', $fileName);

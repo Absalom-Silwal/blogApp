@@ -26,6 +26,8 @@ class UpdateBlogRequest extends FormRequest
         return [
             'name' => 'required|string',
             'body' => 'required|string',
+            'image' =>'nullable',
+            'category_id'=> 'nullable'
         ];
     }
 }
