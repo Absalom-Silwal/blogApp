@@ -70,4 +70,4 @@ Before you begin, ensure you have met the following requirements:
 
 10. **API Documentation**
     ```bash
-    http://127.0.0.1:8000/api/documentation
+    /api/documentation
