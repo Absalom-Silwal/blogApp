@@ -332,6 +332,167 @@ class BlogAppApiController extends BaseController
      * )
      */
 
+        /**
+     * @OA\Post(
+     *     path="/api/create/category",
+     *     summary="Create a new blog category",
+     *     tags={"Blog Category"},
+     *     security={{"bearerAuth": {}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string",
+     *                 description="Name of the blog category",
+     *                 example="Technology"
+     *             )
+     *         )
+     *     ),
+   *     @OA\Response(
+     *         response=200,
+     *         description="blog categories created successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         description="ID of the blog category",
+     *                         example=1
+     *                     ),
+     *                     @OA\Property(
+     *                         property="name",
+     *                         type="string",
+     *                         description="Name of the blog category",
+     *                         example="Technology"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="created_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was created",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="updated_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was last updated",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="current_page",
+     *                 type="integer",
+     *                 description="Current page number",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="from",
+     *                 type="integer",
+     *                 description="First item on the current page",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="last_page",
+     *                 type="integer",
+     *                 description="Last page number",
+     *                 example=5
+     *             ),
+     *             @OA\Property(
+     *                 property="per_page",
+     *                 type="integer",
+     *                 description="Number of items per page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="to",
+     *                 type="integer",
+     *                 description="Last item on the current page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="total",
+     *                 type="integer",
+     *                 description="Total number of items",
+     *                 example=50
+     *             ),
+     *             @OA\Property(
+     *                 property="links",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="url",
+     *                         type="string",
+     *                         description="URL for the pagination link",
+     *                         example="/api/get/category?page=2"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="label",
+     *                         type="string",
+     *                         description="Label for the pagination link",
+     *                         example="Next"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="active",
+     *                         type="boolean",
+     *                         description="Whether the pagination link is active",
+     *                         example=false
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Validation failed for category name."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Unauthorized access"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Something went wrong"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
     public function create(Request $request,$type){
         $service = $this->getService($type);
         return $service->create($request);
@@ -476,6 +637,164 @@ class BlogAppApiController extends BaseController
      *                         example=true
      *                     )
      *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Unauthorized access"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Something went wrong"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+      /**
+     * @OA\Get(
+     *     path="/api/get/category",
+     *     summary="Retrieve a list of blog categories",
+     *     tags={"Blog Category"},
+     *     @OA\Parameter(
+     *         name="limit",
+     *         in="query",
+     *         description="Number of items to return per page",
+     *         required=false,
+     *         schema={
+     *             "type": "integer",
+     *             "example": 10
+     *         }
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of blog categories retrieved successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         description="ID of the blog category",
+     *                         example=1
+     *                     ),
+     *                     @OA\Property(
+     *                         property="name",
+     *                         type="string",
+     *                         description="Name of the blog category",
+     *                         example="Technology"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="created_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was created",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="updated_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was last updated",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="current_page",
+     *                 type="integer",
+     *                 description="Current page number",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="from",
+     *                 type="integer",
+     *                 description="First item on the current page",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="last_page",
+     *                 type="integer",
+     *                 description="Last page number",
+     *                 example=5
+     *             ),
+     *             @OA\Property(
+     *                 property="per_page",
+     *                 type="integer",
+     *                 description="Number of items per page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="to",
+     *                 type="integer",
+     *                 description="Last item on the current page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="total",
+     *                 type="integer",
+     *                 description="Total number of items",
+     *                 example=50
+     *             ),
+     *             @OA\Property(
+     *                 property="links",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="url",
+     *                         type="string",
+     *                         description="URL for the pagination link",
+     *                         example="/api/get/category?page=2"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="label",
+     *                         type="string",
+     *                         description="Label for the pagination link",
+     *                         example="Next"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="active",
+     *                         type="boolean",
+     *                         description="Whether the pagination link is active",
+     *                         example=false
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Invalid request parameters."
      *             )
      *         )
      *     ),
@@ -728,6 +1047,186 @@ class BlogAppApiController extends BaseController
      * )
      */
 
+       /**
+     * @OA\Put(
+     *     path="/api/update/category/{id}",
+     *     summary="Update a blog category",
+     *     tags={"Blog Category"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the blog category to update",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="name",
+     *                 type="string",
+     *                 description="New name of the blog category",
+     *                 example="Updated Category Name"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="blog categories updated successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         description="ID of the blog category",
+     *                         example=1
+     *                     ),
+     *                     @OA\Property(
+     *                         property="name",
+     *                         type="string",
+     *                         description="Name of the blog category",
+     *                         example="Technology"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="created_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was created",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="updated_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was last updated",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="current_page",
+     *                 type="integer",
+     *                 description="Current page number",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="from",
+     *                 type="integer",
+     *                 description="First item on the current page",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="last_page",
+     *                 type="integer",
+     *                 description="Last page number",
+     *                 example=5
+     *             ),
+     *             @OA\Property(
+     *                 property="per_page",
+     *                 type="integer",
+     *                 description="Number of items per page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="to",
+     *                 type="integer",
+     *                 description="Last item on the current page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="total",
+     *                 type="integer",
+     *                 description="Total number of items",
+     *                 example=50
+     *             ),
+     *             @OA\Property(
+     *                 property="links",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="url",
+     *                         type="string",
+     *                         description="URL for the pagination link",
+     *                         example="/api/get/category?page=2"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="label",
+     *                         type="string",
+     *                         description="Label for the pagination link",
+     *                         example="Next"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="active",
+     *                         type="boolean",
+     *                         description="Whether the pagination link is active",
+     *                         example=false
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Invalid data provided."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Unauthorized access"
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not Found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Blog category not found."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Something went wrong."
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
     public function update(Request $request,$type,int $id){
         
         $service = $this->getService($type);
@@ -896,6 +1395,174 @@ class BlogAppApiController extends BaseController
      *                 type="string",
      *                 description="Error message",
      *                 example="Something went wrong"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+      /**
+     * @OA\Delete(
+     *     path="/api/delete/category/{id}",
+     *     summary="Delete a blog category",
+     *     tags={"Blog Category"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the blog category to delete",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *         *     @OA\Response(
+     *         response=200,
+     *         description="blog categories deleted successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="id",
+     *                         type="integer",
+     *                         description="ID of the blog category",
+     *                         example=1
+     *                     ),
+     *                     @OA\Property(
+     *                         property="name",
+     *                         type="string",
+     *                         description="Name of the blog category",
+     *                         example="Technology"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="created_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was created",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="updated_at",
+     *                         type="string",
+     *                         format="date-time",
+     *                         description="Timestamp when the blog category was last updated",
+     *                         example="2024-08-03T12:00:00Z"
+     *                     )
+     *                 )
+     *             ),
+     *             @OA\Property(
+     *                 property="current_page",
+     *                 type="integer",
+     *                 description="Current page number",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="from",
+     *                 type="integer",
+     *                 description="First item on the current page",
+     *                 example=1
+     *             ),
+     *             @OA\Property(
+     *                 property="last_page",
+     *                 type="integer",
+     *                 description="Last page number",
+     *                 example=5
+     *             ),
+     *             @OA\Property(
+     *                 property="per_page",
+     *                 type="integer",
+     *                 description="Number of items per page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="to",
+     *                 type="integer",
+     *                 description="Last item on the current page",
+     *                 example=10
+     *             ),
+     *             @OA\Property(
+     *                 property="total",
+     *                 type="integer",
+     *                 description="Total number of items",
+     *                 example=50
+     *             ),
+     *             @OA\Property(
+     *                 property="links",
+     *                 type="array",
+     *                 @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(
+     *                         property="url",
+     *                         type="string",
+     *                         description="URL for the pagination link",
+     *                         example="/api/get/category?page=2"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="label",
+     *                         type="string",
+     *                         description="Label for the pagination link",
+     *                         example="Next"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="active",
+     *                         type="boolean",
+     *                         description="Whether the pagination link is active",
+     *                         example=false
+     *                     )
+     *                 )
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Invalid request."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Unauthorized access."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Not Found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Blog category not found."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 description="Error message",
+     *                 example="Something went wrong."
      *             )
      *         )
      *     )

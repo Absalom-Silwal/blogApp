@@ -50,6 +50,30 @@ class BlogCategoryTest extends TestCase
             'limit'=>null
         ]);
         $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'data' => [
+                '*' => [
+                    'id',
+                    'name',
+                    'created_at',
+                    'updated_at'
+                ]
+            ],
+            
+            'current_page',
+            'from',
+            'last_page',
+            'per_page',
+            'to',
+            'total',
+            'links' => [ 
+                [
+                'url',
+                'label',
+                'active',
+                ],
+            ]
+        ]);
     }
 
     public function testUserCanAssignBlogCategory(){

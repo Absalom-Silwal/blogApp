@@ -10,19 +10,22 @@
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto">
+          <div class="navbar-nav ms-auto" style="margin-right: 30px;">
             <a class="nav-link" href="/">home</a>
           </div>
         </div>
-        @if($isLogedIn)
-        @php
-          $user = auth()->user();
-        @endphp
-        <button type="button" class="btn btn-outline-info" id="logout" data-route="">Logout</button>
-        @else
-          <button type="button" class="btn btn-outline-info show-modal" data-route="/login">Sign In</button>
-          <button type="button" class="btn btn-outline-info show-modal" data-route="/register">Register</button>
-        @endif
+        <div>
+          @if($isLogedIn)
+          @php
+            $user = auth()->user();
+          @endphp
+          <button type="button" class="btn btn-outline-info" id="logout" data-route="">Logout</button>
+          @else
+            <button type="button" class="btn btn-outline-info show-modal text-white" data-route="/login">Sign In</button>
+            <button type="button" class="btn btn-outline-info show-modal text-white" data-route="/register">Register</button>
+          @endif
+        </div>
+        
      
       </div>
     </nav>
