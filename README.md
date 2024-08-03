@@ -1,21 +1,11 @@
-# Laravel Application
-
-## Overview
-
-This is a Laravel application designed to [briefly describe the purpose of the application, e.g., "manage user profiles and track activities"]. Laravel is a PHP framework for building web applications with an elegant syntax.
-
-## Features
-
-- **Feature 1:** [e.g., User authentication and authorization]
-- **Feature 2:** [e.g., CRUD operations for managing resources]
-- **Feature 3:** [e.g., Real-time notifications using WebSockets]
+# Laravel Blog Application
 
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
 - PHP = 7.3|8.0
--Laravel = 8.75
+- Laravel = 8.75
 - Composer
 - MySQL or another supported database
 - Node.js and npm (for managing frontend assets)
