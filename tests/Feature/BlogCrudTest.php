@@ -63,7 +63,7 @@ class BlogCrudTest extends TestCase
         ])->getJson('/api/get/blog',[
             'limit'=>5,
             'search'=>'abcd',
-            'category'=>$category->id
+            'category'=>$category?$category->id:""
         ]);
         //dd($response);
         $response->assertStatus(200);
