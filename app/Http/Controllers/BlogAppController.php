@@ -29,9 +29,7 @@ class BlogAppController extends BaseController
 
     public function view($type,$id){
         $service = $this->getService($type);
-        $resp = $service->view($id);
-
-        return $resp;
+        return $service->view($id);
     }
 
     public function addEdit(Request $request,$type){
@@ -41,35 +39,29 @@ class BlogAppController extends BaseController
 
     public function create(Request $request,$type){
         $service = $this->getService($type);
-        $resp = $service->create($request);
-
-        return $resp;
+        return  $service->create($request);
     }
 
     public function get(Request $request,$type){
         $service=$this->getService($type);
-        $resp = $service->get($request);
-        return $resp;
+        return $service->get($request);
     }
 
     public function update(Request $request,$type,int $id){
         
         $service = $this->getService($type);
-        $resp = $service->update($id,$request);
-        return $resp;
+        return $service->update($id,$request);
     }
 
-    public function delete($type,$id){
+    public function delete(Request $request,$type,$id){
         $service = $this->getService($type);
-        $resp = $service->delete($id);
-        return $resp;
+        return $service->delete($request,$id);
     }
 
     public function register(Request $request){
         $type='auth';
         $service = $this->getService($type);
-        $resp = $service->register($request);
-        return $resp;
+        return $service->register($request);
     }
 
     public function login(Request $request){
@@ -83,21 +75,19 @@ class BlogAppController extends BaseController
         
         $type='auth';
         $service = $this->getService($type);
-        $resp = $service->webLogout($request);
-        return $resp;
+        return $service->webLogout($request);
     }
 
     public function upload(Request $request){
         $type='file';
         $service = $this->getService($type);
-        $resp = $service->upload($request);
-        return $resp;
+        return $service->upload($request);
     }
 
     public function assignCategory(Request $request,$blog){
         $type='blog';
         $service = $this->getService($type);
-        $resp = $service->assignCategory($request,$blog);
+        return $service->assignCategory($request,$blog);
     }
 
     protected function getService($type){
@@ -108,7 +98,7 @@ class BlogAppController extends BaseController
     public function getFile(Request $request){
         $type='file';
         $service = $this->getService($type);
-        $resp = $service->get($request);
-        return $resp;
+        return $service->get($request);
+       
     }
 }

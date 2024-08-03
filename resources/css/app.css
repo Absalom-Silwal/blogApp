@@ -98,7 +98,7 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {
-  border-color: black;
+  border-color: #0c8bd4;
   -webkit-box-shadow: none;
           box-shadow: none;
   outline: 0 none;
@@ -121,7 +121,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 label {
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   border-radius: 0px;
 }
 

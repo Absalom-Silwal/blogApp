@@ -30,5 +30,5 @@
     </form>
 </div>
 <div class="modal-footer">
-    <p class="mb-0">Already have an account? <a href="#" class="text-primary show-modal" data-route="/login">Login</a></p>
+    <p class="mb-0">Already have an account? <a href="#" class="text-primary show-modal" id="show-login-modal" data-route="/login">Login</a></p>
 </div>
