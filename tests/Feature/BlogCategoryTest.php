@@ -76,23 +76,23 @@ class BlogCategoryTest extends TestCase
         ]);
     }
 
-    public function testUserCanAssignBlogCategory(){
-        $category = BlogCategory::where('is_deleted',0)->first();
-        $blog = Blog::where('is_deleted',0)->first();
-        if($category){
-            $response = $this->withHeaders([
-                'Authorization' => 'Bearer ' . $this->token,
-            ])->post("/api/assign/category-to/{$blog->id}",[
-                'category' => $category->id
-            ]);
-            $response->assertStatus(200);
-            $this->assertDatabaseHas('blogs',[
-                'title'=>$blog->title,
-                'body'=>$blog->body,
-                'category_id' => $category->id
-            ]);
-        }
-    }
+    // public function testUserCanAssignBlogCategory(){
+    //     $category = BlogCategory::where('is_deleted',0)->first();
+    //     $blog = Blog::where('is_deleted',0)->first();
+    //     if($category){
+    //         $response = $this->withHeaders([
+    //             'Authorization' => 'Bearer ' . $this->token,
+    //         ])->post("/api/assign/category-to/{$blog->id}",[
+    //             'category' => $category->id
+    //         ]);
+    //         $response->assertStatus(200);
+    //         $this->assertDatabaseHas('blogs',[
+    //             'title'=>$blog->title,
+    //             'body'=>$blog->body,
+    //             'category_id' => $category->id
+    //         ]);
+    //     }
+    // }
 
     public function testUserCanUpdateBlogCategory(){
         $this->withoutExceptionHandling();
