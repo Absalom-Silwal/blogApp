@@ -11,7 +11,14 @@ function blogTemplator(blogs){
             year: 'numeric'
           });
        const isUser = $('#isUser').val();
-       
+       let shortDesc = blog.body.split(/\s+/);
+       if(shortDesc.length > 20){
+        shortDesc = shortDesc.slice(1,20).join(" ")+'...';
+       }
+       else{
+        shortDesc = shortDesc.join(' ');
+       }
+      
         return `<div class="post-item">
         <div class="post-img"><img src="/getFile?file=${blog.image_path}" alt=""></div>
         <div class="post-main-info">
@@ -24,7 +31,7 @@ function blogTemplator(blogs){
               <span><i class="far fa-calendar"></i> ${formatter.format(d)}</span>
           </div>
           <div class="post-desc">
-            <span>${blog.body}</span>
+            <span>${shortDesc}</span>
           </div>
           
           <a href="./detail/${blog.id}" class="main-button">Read More ></a>
