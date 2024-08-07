@@ -24,8 +24,8 @@ Route::namespace('App\Http\Controllers\Api')->group(function(){
         Route::post('/upload','BlogAppApiController@upload')->name('upload.image');
         Route::post('/assign/category-to/{blog}','BlogAppApiController@assignCategory');
         Route::post('/create/{type}','BlogAppApiController@create');
-        Route::post('/update/{type}/{id}','BlogAppApiController@update');
-        Route::post('/delete/{type}/{id}','BlogAppApiController@delete');
+        Route::put('/update/{type}/{id}','BlogAppApiController@update');
+        Route::delete('/delete/{type}/{id}','BlogAppApiController@delete');
     });
 
 });

@@ -100,7 +100,7 @@ class BlogCategoryTest extends TestCase
         $blog_name = $this->faker->word;
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $this->token,
-        ])->post("/api/update/category/{$category->id}",[
+        ])->put("/api/update/category/{$category->id}",[
             'name'=>$blog_name,
         ]);
         $response->assertStatus(200);
@@ -114,7 +114,7 @@ class BlogCategoryTest extends TestCase
         $category = BlogCategory::where('is_deleted',0)->first();
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $this->token,
-        ])->post("/api/delete/category/{$category->id}");
+        ])->delete("/api/delete/category/{$category->id}");
         $response->assertStatus(200);
         $this->assertDatabaseHas('blog_categories',[
             'id'=> $category->id,

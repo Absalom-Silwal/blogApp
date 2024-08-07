@@ -122,7 +122,7 @@ class BlogCrudTest extends TestCase
         $body = $this->faker->paragraph;
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $this->token,
-        ])->post("/api/update/blog/{$blog->id}",[
+        ])->put("/api/update/blog/{$blog->id}",[
             'title'=>$title,
             'body'=>$body,
             'image'=>$file,
@@ -140,7 +140,7 @@ class BlogCrudTest extends TestCase
         $blog = Blog::where('is_deleted',0)->first();
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $this->token,
-        ])->post("/api/delete/blog/{$blog->id}");
+        ])->delete("/api/delete/blog/{$blog->id}");
         $response->assertStatus(200);
         $this->assertDatabaseHas('blogs',[
             'title'=>$blog->title,
